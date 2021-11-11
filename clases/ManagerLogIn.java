@@ -52,9 +52,10 @@ public class ManagerLogIn {
     }
 
     public Usuario checkearLogIn(String mail, String password) {
+
         for (Empleador empleador : listaEmpleadores) {
             if (empleador.mail.equals(mail) && empleador.contrasena.equals(password)) {
-                return empleador;
+            	return empleador;
             }
         }
         return null;
@@ -63,7 +64,8 @@ public class ManagerLogIn {
   
     public Boolean leerEmpleadores() {
         try {
-            FileReader entrada = new FileReader("src/almacenamientos/empleadores.txt");
+        	//borre src solo par martin
+            FileReader entrada = new FileReader("almacenamientos/empleadores.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Empleador empleador;

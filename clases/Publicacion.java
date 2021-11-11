@@ -15,6 +15,22 @@ public class Publicacion {
     Boolean requiereTitulo;
     Date vigencia;
     Boolean publicacionActiva;
+    public Publicacion(
+    		int nroPublicacion,
+    		String descripcion,
+    		Modalidad modalidad,
+    		Categoria categoria,
+    		String lugar,
+    		TipoTrabajo tipoTrabajo,
+    		int sueldo,
+    		ArrayList<Requisito> requisitos,
+    		ArrayList<Tarea> tareasARealizar,
+    		Boolean requiereTitulo,
+    		Date vigencia,
+    		Boolean publicacionActiva) {
+    	super();//nose si supuer te guarda los elementos
+    	
+    }
 
     
 }
