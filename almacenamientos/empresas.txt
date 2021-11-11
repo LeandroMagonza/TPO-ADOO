@@ -1,2 +1,2 @@
 Cuit;Nombre;Direccion;Localidad;Telefono;Mail
-20739517;Uade;Independencia ;CABA;46417903;rrhh@uade.edu.ar
+20739517;Uade;Independencia;CABA;46417903;rrhh@uade.edu.ar

@@ -14,4 +14,7 @@ public class Usuario {
 		this.contrasena = contrasena;
 		this.mail = mail;
 	}
+	public void abrirMenu() {
+		System.out.println("logueado como: null");
+	}
 }

@@ -1,6 +1,7 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ import java.io.IOException;
 
 public class ManagerLogIn {
     // atributo
+    public Usuario usuarioLogueado;
     private ArrayList<Postulante> listaPostulantes;
     private ArrayList<Empleador> listaEmpleadores;
     private ArrayList<Administrador> listaAdministradores;
@@ -20,6 +22,26 @@ public class ManagerLogIn {
         listaAdministradores = new ArrayList<Administrador>();
         leerEmpleadores();
 
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Checkear Log In
+        while (true) {
+            System.out.println("Ingrese su usuario:");
+            String usuario = scanner.nextLine();
+            System.out.printf("Usuario :" + usuario +"\n");
+            System.out.println("Ingrese su contrasena:");
+            String contrasena = scanner.nextLine();
+            System.out.printf("Contrasena :" + contrasena +"\n");
+            Usuario usuarioALoguear = getManagerLogIn().checkearLogIn(usuario, contrasena);
+            if (usuarioALoguear != null) {
+                scanner.close();
+                getManagerLogIn().usuarioLogueado = usuarioALoguear;
+                getManagerLogIn().usuarioLogueado.abrirMenu();
+                break;
+            }
+            System.out.println("Nombre de usuario o contrasena incorrectas");
+        }
     }
 
     public static ManagerLogIn getManagerLogIn() {
@@ -38,6 +60,7 @@ public class ManagerLogIn {
         return null;
     }
 
+  
     public Boolean leerEmpleadores() {
         try {
             FileReader entrada = new FileReader("src/almacenamientos/empleadores.txt");
@@ -60,4 +83,6 @@ public class ManagerLogIn {
             return false;
         }
     }
+
+    
 }

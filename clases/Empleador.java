@@ -8,4 +8,8 @@ public class Empleador extends Usuario{
         this.sector = sector;
         this.empresa = new Empresa();
     }
+
+    public void abrirMenu(){
+        System.out.println("logueado como: empleador");
+    }
 }
