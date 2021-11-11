@@ -1,0 +1,2 @@
+DNI;Nombre;Apellido;Mail;Contraseña;Sector;Empresa
+111;Leandro;Magonza;lmagonza;asd123;Sistemas;Uade
