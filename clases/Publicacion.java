@@ -1,5 +1,6 @@
 package clases;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Publicacion {
     int nroPublicacion;
@@ -12,6 +13,8 @@ public class Publicacion {
     ArrayList<Requisito> requisitos;
     ArrayList<Tarea> tareasARealizar;
     Boolean requiereTitulo;
+    Date vigencia;
+    Boolean publicacionActiva;
 
     
 }
