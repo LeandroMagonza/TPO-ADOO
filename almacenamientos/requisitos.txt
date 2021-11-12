@@ -1,0 +1,2 @@
+1;2;3;4
+Conocimiento SQL;Conocimiento Java;Conocimiento Python; Conocimiento NoSQL
