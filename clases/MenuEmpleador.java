@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class MenuEmpleador {
     // crear publicacion
@@ -16,24 +17,21 @@ public class MenuEmpleador {
     //      ver postulantes de publicacion
     // }
 	public static void mostrarMenu() {
-		Scanner scanner = new Scanner(System.in);
-		while (true) {
+		int respuesta =0;
+		while (respuesta != 1 && respuesta != 2) {
 			System.out.println("Menu");
-			System.out.println("1. Crear publicacion ");
-			System.out.println("2. Ver publicacion ");
-			System.out.println("Ingrese el numero de la opcion : ");
-			String respuesta = scanner.nextLine(); // ATENCION, PROBLEMAS CON EL SCANNER
-			if(respuesta == "1" || respuesta == "2") {
-				scanner.close();
-				int respuestaNum = Integer.parseInt(respuesta);
-				switch(respuestaNum){
-				case 1:
-					crearPublicacion();
-				case 2:
-					verPublicacion();
-				}
-				break;
-			}
+			System.out.println("1. Crear publicación ");
+			System.out.println("2. Ver publicación ");
+			System.out.print("Ingrese el numero de la opción : ");
+			respuesta = ManagerLogIn.scanner.nextInt(); 
+			ManagerLogIn.scanner.nextLine();
+		}
+			switch(respuesta){
+			case 1:
+				crearPublicacion();
+			case 2:
+				verPublicacion();
+				
 				
 		}
 		
@@ -45,36 +43,71 @@ public class MenuEmpleador {
 		
 	}
 	private static void verPublicacion() {
-		Scanner scanner = new Scanner(System.in);
-		String respuesta = "";
+		int respuesta = 0;
 		System.out.println("Usted ha seleccionado ver publicación");
-		while (respuesta != "1" || respuesta != "2" || respuesta != "3") {
+		while (respuesta != 1 && respuesta != 2 && respuesta != 3) {
 			System.out.println("1. Buscar con el Nro de publicación");
-			System.out.println("2. Mostrar lista de publicaciones");
+			System.out.println("2. Mostrar Nro y descripción");
 			System.out.println("3. Volver al menu anterior");
 			System.out.println("Ingrese el numero de la opción : ");
-			respuesta = scanner.nextLine();//MISMO PROBLEMA
+			respuesta = ManagerLogIn.scanner.nextInt();//MISMO PROBLEMA
+			ManagerLogIn.scanner.nextLine();
 		}
-		scanner.close();
-		int respuestaNum = Integer.parseInt(respuesta);
-		switch(respuestaNum){
-		
+		switch(respuesta){
 			case 1:
-				buscarPublicacion();
+				buscarNroPublicacion();
 			case 2:
-				mostrarListaPublicaciones();
+				listaPublicaciones();
 			case 3:
 				mostrarMenu();
-			}
+		}
+		
 	}
-	//busca la publicacion hay que crear metodo en publicacion conttroler
-	private static void buscarPublicacion() {
+	private static void buscarNroPublicacion() {
+		System.out.println("Ingrese el nro de la publicacion");
+		//modificar para verificar nro de la empresa....
+		int nro = ManagerLogIn.scanner.nextInt();
+		ManagerLogIn.scanner.nextLine();
+		Publicacion publicacion = ManagerPublicacion.buscar(nro);
+		mostrarPublicacion(publicacion);
+		
+		
+	}
+	private static void listaPublicaciones() {
+		System.out.println("Ingrese el nro de la empresa");
+		int empleador = ManagerLogIn.scanner.nextInt();
+		ManagerLogIn.scanner.nextLine();
+		ArrayList<Publicacion> lista = ManagerPublicacion.listado(empleador);
+		
+	}
+	private static void mostrarPublicacion(Publicacion p) {
+		System.out.println("Código de la publicacion: "+p.getNroPublicacion());
+		System.out.println("Descripcion: "+p.getDescripcion());
+		System.out.println("Modalidad: "+p.getModalidad().name() );
+		System.out.println("Categoria: "+p.getCategoria().name());
+		System.out.println("Lugar: "+p.getLugar());
+		System.out.println("Tipo: "+p.getTipoTrabajo());
+		System.out.println("Sueldo: $"+p.getSueldo());
+		System.out.println("Requisitos: ");
+		for(Requisito requisito: p.getRequisitos())
+			System.out.println(requisito.descripcion);
+		System.out.println("Tareas");
+		for(Tarea tarea: p.getTareasARealizar())
+			System.out.println(tarea.descripcion);
+		if(p.getRequiereTitulo())
+			System.out.print("Si ");
+		else
+			System.out.print("No ");
+		System.out.println("requiere titulacion");
+		System.out.println("Fecha limite: "+p.getVigencia());//revisar como se muestra
+		System.out.print("La busqueda ");
+		if(p.getPublicacionActiva())
+			System.out.print(" SI ");
+		else
+			System.out.print(" No ");
+		System.out.println("sigue abierta");
 		
 	}
 	
-	//muestra la lista para luego seleccionar la que quiere
-	private static void mostrarListaPublicaciones() {
-		
-	}
 	
 }

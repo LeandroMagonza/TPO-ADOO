@@ -14,6 +14,7 @@ public class ManagerLogIn {
     private ArrayList<Empleador> listaEmpleadores;
     private ArrayList<Administrador> listaAdministradores;
     private static ManagerLogIn instanciaLogIn;
+    static Scanner scanner = new Scanner(System.in);
 
     // constructor
     private ManagerLogIn() {
@@ -24,7 +25,6 @@ public class ManagerLogIn {
 
     }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         // Checkear Log In
         while (true) {
             System.out.println("Ingrese su usuario:");
@@ -35,7 +35,6 @@ public class ManagerLogIn {
             System.out.printf("Contrasena :" + contrasena +"\n");
             Usuario usuarioALoguear = getManagerLogIn().checkearLogIn(usuario, contrasena);
             if (usuarioALoguear != null) {
-                scanner.close();
                 getManagerLogIn().usuarioLogueado = usuarioALoguear;
                 getManagerLogIn().usuarioLogueado.abrirMenu();
                 break;
