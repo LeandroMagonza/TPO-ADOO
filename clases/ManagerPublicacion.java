@@ -27,9 +27,9 @@ public class ManagerPublicacion {
                 linea = miBuffer.readLine();
                 if (linea != null) {
                     String[] arrayLinea = linea.split(";");
-                    publicacion = new Publicacion(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
-                            arrayLinea[3], arrayLinea[4], arrayLinea[5],  Integer.parseInt(arrayLinea[6]), arrayLinea[7],
-                             arrayLinea[8], arrayLinea[9].equalsIgnoreCase("true"), arrayLinea[10], arrayLinea[11].equalsIgnoreCase("true"));
+                    publicacion = new Publicacion(Integer.parseInt(arrayLinea[0]),Integer.parseInt(arrayLinea[1]),  arrayLinea[2], arrayLinea[3],
+                            arrayLinea[4], arrayLinea[5], arrayLinea[6],  Integer.parseInt(arrayLinea[7]), arrayLinea[8],
+                             arrayLinea[9], arrayLinea[10].equalsIgnoreCase("true"), arrayLinea[11], arrayLinea[12].equalsIgnoreCase("true"));
                     listaPublicaciones.add(publicacion);
                 }
             }
@@ -37,7 +37,21 @@ public class ManagerPublicacion {
     	}catch (IOException e) {
             return false;
         }
+    }
+    
+    public Publicacion buscarPublicacion(int nro) {
+    	Publicacion correcto = null;
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getNroPublicacion() == nro)
+    			correcto = publicacion;
+    	}
+		return correcto;
+    }
+    
+    public ArrayList<Publicacion> mostrarLista(){
+		return null;
     	
     }
+    
 
 }
