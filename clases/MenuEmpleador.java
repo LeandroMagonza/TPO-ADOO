@@ -78,6 +78,18 @@ public class MenuEmpleador {
 		int empleador = ManagerLogIn.scanner.nextInt();
 		ManagerLogIn.scanner.nextLine();
 		ArrayList<Publicacion> lista = ManagerPublicacion.listado(empleador);
+		for(Publicacion publicacion: lista) {
+			System.out.println("Nro: "+publicacion.getNroPublicacion());
+			System.out.println("Descripcion: "+publicacion.getDescripcion());
+		}
+		System.out.println("Escriba el nro de la publicacion deseada: ");
+		int nroPublicacion = ManagerLogIn.scanner.nextInt();
+		ManagerLogIn.scanner.nextLine();
+		Publicacion respuesta = ManagerPublicacion.buscar(nroPublicacion);
+		mostrarPublicacion(respuesta);
+		System.out.println("");
+		System.out.println("1. Modificar");
+		System.out.println("2. Volver al menu anterior");
 		
 	}
 	private static void mostrarPublicacion(Publicacion p) {
