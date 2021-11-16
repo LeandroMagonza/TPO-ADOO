@@ -50,7 +50,7 @@ public class MenuEmpleador {
 			System.out.println("2. Mostrar Nro y descripción");
 			System.out.println("3. Volver al menu anterior");
 			System.out.println("Ingrese el numero de la opción : ");
-			respuesta = ManagerLogIn.scanner.nextInt();//MISMO PROBLEMA
+			respuesta = ManagerLogIn.scanner.nextInt();
 			ManagerLogIn.scanner.nextLine();
 		}
 		switch(respuesta){
@@ -63,6 +63,8 @@ public class MenuEmpleador {
 		}
 		
 	}
+	
+	//se busca por nro de publicacion
 	private static void buscarNroPublicacion() {
 		System.out.println("Ingrese el nro de la publicacion");
 		//modificar para verificar nro de la empresa....
@@ -70,9 +72,10 @@ public class MenuEmpleador {
 		ManagerLogIn.scanner.nextLine();
 		Publicacion publicacion = ManagerPublicacion.buscar(nro);
 		mostrarPublicacion(publicacion);
-		
-		
+		modificarPublicacion(publicacion);
 	}
+	
+	//se muestra la lista d elas publicaciones de la empresa
 	private static void listaPublicaciones() {
 		System.out.println("Ingrese el nro de la empresa");
 		int empleador = ManagerLogIn.scanner.nextInt();
@@ -87,12 +90,42 @@ public class MenuEmpleador {
 		ManagerLogIn.scanner.nextLine();
 		Publicacion respuesta = ManagerPublicacion.buscar(nroPublicacion);
 		mostrarPublicacion(respuesta);
-		System.out.println("");
-		System.out.println("1. Modificar");
-		System.out.println("2. Volver al menu anterior");
+		modificarPublicacion(respuesta);
+		
 		
 	}
-	private static void mostrarPublicacion(Publicacion p) {
+	
+	//muestra la opcion una vez que seleccionamos una publicacion
+	private static void modificarPublicacion(Publicacion p) {
+		int respuesta =0;
+		while (respuesta != 1 && respuesta != 2 && respuesta != 3) {
+			System.out.println("1. Cambiar estado");
+			System.out.println("2. Cambiar fecha de vigencia");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("3. Dar de baja");
+			System.out.println("Ingrese el numero de la opción : ");
+			respuesta = ManagerLogIn.scanner.nextInt(); 
+			ManagerLogIn.scanner.nextLine();
+		}
+			switch(respuesta){
+			case 1:
+				crearPublicacion();
+			case 2:
+				verPublicacion();
+				
+				
+		}
+	}
+	
+	//muestra la publicacion
+ 	private static void mostrarPublicacion(Publicacion p) {
 		System.out.println("Código de la publicacion: "+p.getNroPublicacion());
 		System.out.println("Descripcion: "+p.getDescripcion());
 		System.out.println("Modalidad: "+p.getModalidad().name() );
