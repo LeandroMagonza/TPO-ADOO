@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ManagerPublicacion {
     // atributo
     public Publicacion publicacionSeleccionada;
-    private ArrayList<Publicacion> listaPublicaciones;
+    private static ArrayList<Publicacion> listaPublicaciones;
     private static ManagerPublicacion instanciaPublicacion;
     // constructor
     private ManagerPublicacion() throws Exception {
@@ -27,9 +27,9 @@ public class ManagerPublicacion {
                 linea = miBuffer.readLine();
                 if (linea != null) {
                     String[] arrayLinea = linea.split(";");
-                    publicacion = new Publicacion(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
-                            arrayLinea[3], arrayLinea[4], arrayLinea[5],  Integer.parseInt(arrayLinea[6]), arrayLinea[7],
-                             arrayLinea[8], arrayLinea[9].equalsIgnoreCase("true"), arrayLinea[10], arrayLinea[11].equalsIgnoreCase("true"));
+                    publicacion = new Publicacion(Integer.parseInt(arrayLinea[0]), Integer.parseInt(arrayLinea[1]), arrayLinea[2],arrayLinea[3],
+                            arrayLinea[4], arrayLinea[5], arrayLinea[6],  Integer.parseInt(arrayLinea[7]), arrayLinea[8],
+                             arrayLinea[9], arrayLinea[10].equalsIgnoreCase("true"), arrayLinea[11], arrayLinea[12].equalsIgnoreCase("true"));
                     listaPublicaciones.add(publicacion);
                 }
             }
@@ -37,6 +37,23 @@ public class ManagerPublicacion {
     	}catch (IOException e) {
             return false;
         }
+    	
+    }
+    public static Publicacion buscar(int n) {
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getNroPublicacion()==n)
+    			return publicacion;
+    	}
+		return null;
+    }
+    public static ArrayList<Publicacion> listado(int e){
+    	ArrayList<Publicacion> listaResultado = new ArrayList<Publicacion>();
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getNroEmpresa()== e) {
+    			listaResultado.add(publicacion);
+    		}
+    	}
+		return listaResultado;
     	
     }
 
