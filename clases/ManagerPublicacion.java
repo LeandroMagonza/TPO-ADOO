@@ -39,6 +39,8 @@ public class ManagerPublicacion {
         }
     	
     }
+  
+    //busca la punlicacion con el nro n
     public static Publicacion buscar(int n) {
     	for(Publicacion publicacion: listaPublicaciones) {
     		if(publicacion.getNroPublicacion()==n)
@@ -46,6 +48,8 @@ public class ManagerPublicacion {
     	}
 		return null;
     }
+    
+    //muestra las publicaciones de la empresa e
     public static ArrayList<Publicacion> listado(int e){
     	ArrayList<Publicacion> listaResultado = new ArrayList<Publicacion>();
     	for(Publicacion publicacion: listaPublicaciones) {
@@ -56,5 +60,57 @@ public class ManagerPublicacion {
 		return listaResultado;
     	
     }
+    
+    //devuelve la lista de publicaciones de la categoria c
+    public static ArrayList<Publicacion> filtradoCategoria(Categoria c){
+    	ArrayList<Publicacion> listaResultado = new ArrayList<Publicacion>();
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getCategoria().equals(c)){
+    			listaResultado.add(publicacion);
+    		}
+    	}
+		return listaResultado;
+    }
 
+    //oferta laboral mas popular de un mes o año FALTA
+    public static Publicacion masPopularYear(int year) {
+    	
+    	return null;
+    }
+    
+    //oferta labora mas accesible modalidad part, remoto, requisitos tareas
+    public static Publicacion masAccesible() {
+    	Publicacion masAc = null;
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getPublicacionActiva() && publicacion.getModalidad().name().equalsIgnoreCase("PartTime") && publicacion.getTipoTrabajo().name().equalsIgnoreCase("Remoto")) {
+    			if(masAc == null)
+    				masAc = publicacion;
+    			else {
+    				if(masAc.getRequisitos().size()> publicacion.getRequisitos().size())
+    					masAc = publicacion;
+    				if(masAc.getRequisitos().size()== publicacion.getRequisitos().size() && masAc.getTareasARealizar().size() > publicacion.getTareasARealizar().size())
+    					masAc = publicacion;
+    			}
+    		}
+    	}
+    	return masAc;
+    }
+    
+    //oferta menos accesible
+    public static Publicacion menpsAccesible() {
+    	Publicacion menosAc = null;
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getPublicacionActiva() && publicacion.getModalidad().name().equalsIgnoreCase("FullTime") && publicacion.getTipoTrabajo().name().equalsIgnoreCase("Presencial")) {
+    			if(menosAc == null)
+    				menosAc = publicacion;
+    			else {
+    				if(menosAc.getRequisitos().size()< publicacion.getRequisitos().size())
+    					menosAc = publicacion;
+    				if(menosAc.getRequisitos().size()== publicacion.getRequisitos().size() && menosAc.getTareasARealizar().size() < publicacion.getTareasARealizar().size())
+    					menosAc = publicacion;
+    			}
+    		}
+    	}
+    	return menosAc;
+    }
 }
