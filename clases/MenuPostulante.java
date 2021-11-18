@@ -65,9 +65,11 @@ public class MenuPostulante extends Menu {
 			case 1:
 				postularse();
 				respuesta = -1;
+				break;
 			case 2:
 				agregarFavoritos();
 				respuesta = -1;
+				break;
 			case 0:
 				respuesta = -1;
 				break elegirPublicaciones;
