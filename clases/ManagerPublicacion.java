@@ -39,5 +39,8 @@ public class ManagerPublicacion {
         }
     	
     }
+    public Publicacion devolverPublicacion(int id){
+        return null;
+    }
 
 }

@@ -1,5 +1,5 @@
 package clases;
-
+import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -14,7 +14,7 @@ public class ManagerLogIn {
     private ArrayList<Empleador> listaEmpleadores;
     private ArrayList<Administrador> listaAdministradores;
     private static ManagerLogIn instanciaLogIn;
-
+    public static Scanner scanner = new Scanner(System.in);
     // constructor
     private ManagerLogIn() {
         listaPostulantes = new ArrayList<Postulante>();
@@ -24,7 +24,7 @@ public class ManagerLogIn {
 
     }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        
         // Checkear Log In
         while (true) {
             System.out.println("Ingrese su usuario:");
@@ -35,13 +35,13 @@ public class ManagerLogIn {
             System.out.printf("Contrasena :" + contrasena +"\n");
             Usuario usuarioALoguear = getManagerLogIn().checkearLogIn(usuario, contrasena);
             if (usuarioALoguear != null) {
-                scanner.close();
                 getManagerLogIn().usuarioLogueado = usuarioALoguear;
                 getManagerLogIn().usuarioLogueado.abrirMenu();
                 break;
             }
             System.out.println("Nombre de usuario o contrasena incorrectas");
         }
+        scanner.close();
     }
 
     public static ManagerLogIn getManagerLogIn() {
@@ -65,7 +65,7 @@ public class ManagerLogIn {
     public Boolean leerEmpleadores() {
         try {
         	//borre src solo par martin
-            FileReader entrada = new FileReader("almacenamientos/empleadores.txt");
+            FileReader entrada = new FileReader("src/almacenamientos/empleadores.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Empleador empleador;
@@ -77,6 +77,7 @@ public class ManagerLogIn {
                     empleador = new Empleador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
                             arrayLinea[3], arrayLinea[4], arrayLinea[5], arrayLinea[6]);
                     listaEmpleadores.add(empleador);
+                    System.out.println(empleador.mail);
                 }
             }
             entrada.close();

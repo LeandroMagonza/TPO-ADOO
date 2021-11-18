@@ -17,56 +17,54 @@ public class MenuEmpleador {
     //      ver postulantes de publicacion
     // }
 	public static void mostrarMenu() {
-		Scanner scanner = new Scanner(System.in);
-		String respuesta = "";
-		while (respuesta != "1" || respuesta != "2") {
+		Scanner scanner = ManagerLogIn.scanner;
+		int respuesta = 0;
+		while (respuesta != 1 && respuesta != 2) {
 			System.out.println("Menu");
 			System.out.println("1. Crear publicación ");
 			System.out.println("2. Ver publicación ");
 			System.out.print("Ingrese el numero de la opción : ");
-			respuesta = scanner.nextLine(); // ATENCION, PROBLEMAS CON EL SCANNER
+			respuesta = scanner.nextInt(); 
 		}
-			scanner.close();
-			int respuestaNum = Integer.parseInt(respuesta);
+			int respuestaNum = respuesta;
 			switch(respuestaNum){
 			case 1:
 				crearPublicacion();
 			case 2:
 				verPublicacion();
-				
-				
 		}
-		
 	}
 	private static void crearPublicacion() {
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = ManagerLogIn.scanner;
 		String respuesta = "";
-		System.out.println("Usted ha seleccionado crear publiación");
+		System.out.println("Usted ha seleccionado crear publicacion");
 		
 	}
 	private static void verPublicacion() {
-		Scanner scanner = new Scanner(System.in);
-		String respuesta = "";
+		Scanner scanner = ManagerLogIn.scanner;
+		int respuesta = 0;
 		System.out.println("Usted ha seleccionado ver publicación");
-		while (respuesta != "1" || respuesta != "2" || respuesta != "3") {
+		while ((respuesta != 1) && (respuesta != 2) && (respuesta != 3)) {
 			System.out.println("1. Buscar con el Nro de publicación");
-			System.out.println("2. Mostrar Nro y descripción");
+			System.out.println("2. Mostrar Listado");
 			System.out.println("3. Volver al menu anterior");
 			System.out.println("Ingrese el numero de la opción : ");
-			respuesta = scanner.nextLine();//MISMO PROBLEMA
+			respuesta = scanner.nextInt();
+			scanner.nextLine();
 		}
-		scanner.close();
-		int respuestaNum = Integer.parseInt(respuesta);
-		switch(respuestaNum){
-		/* FALTA MODIFICAR
+		switch(respuesta){
 		case 1:
-			crearPublicacion();
+			buscarPublicacionXNro();
 		case 2:
 			verPublicacion();
-			*/
+		case 3:
+			mostrarMenu();
 			
 	}
 		
+	}
+	private static void buscarPublicacionXNro() {
+
 	}
 	
 }
