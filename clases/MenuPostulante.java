@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class MenuEmpleador {
+public class MenuPostulante {
     // crear publicacion
     // ver publicaciones {
     //      modificar publicacion

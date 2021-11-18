@@ -18,7 +18,7 @@ public class Postulante extends Usuario {
 
     public void abrirMenu(){
         System.out.println("logueado como: Postulante");
-        MenuEmpleador.mostrarMenu();
+        MenuPostulante.mostrarMenu();
         
     }
 
