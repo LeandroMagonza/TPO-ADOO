@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class ManagerPublicacion {
     // atributo
-    public Publicacion publicacionSeleccionada;
     private static ArrayList<Publicacion> listaPublicaciones;
     private static ManagerPublicacion instanciaPublicacion;
     // constructor
@@ -58,7 +57,6 @@ public class ManagerPublicacion {
     		}
     	}
 		return listaResultado;
-    	
     }
     
     //devuelve la lista de publicaciones de la categoria c
@@ -97,7 +95,7 @@ public class ManagerPublicacion {
     }
     
     //oferta menos accesible
-    public static Publicacion menpsAccesible() {
+    public static Publicacion menosAccesible() {
     	Publicacion menosAc = null;
     	for(Publicacion publicacion: listaPublicaciones) {
     		if(publicacion.getPublicacionActiva() && publicacion.getModalidad().name().equalsIgnoreCase("FullTime") && publicacion.getTipoTrabajo().name().equalsIgnoreCase("Presencial")) {

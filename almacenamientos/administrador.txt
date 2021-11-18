@@ -1,2 +1,0 @@
-DNI;Nombre;Apellido;Mail;Contraseña;Sector;Empresa
-885;Tomas;Orobio;orotomas;asd123;Sistemas;Uade

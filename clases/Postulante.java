@@ -8,7 +8,7 @@ public class Postulante extends Usuario {
     Date fechaNacimiento;
     ArrayList<Nacionalidad> nacionalidades;
     ArrayList<Idioma> idiomas;
-    ArrayList<Interes> intereses;
+    ArrayList<Categoria> intereses;
     ArrayList<Publicacion> publicacionesFavoritas;
 
     public Postulante(int dni,String nombre,String apellido,String mail, String contrasena,Date fechaNacimiento){

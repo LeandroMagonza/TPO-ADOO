@@ -18,11 +18,12 @@ public class MenuEmpleador {
     // }
 	public static void mostrarMenu() {
 		Scanner scanner = ManagerLogIn.scanner;
-		int respuesta = 0;
-		while (respuesta != 1 && respuesta != 2) {
+		int respuesta = -1;
+		while (respuesta != 1 && respuesta != 2 && respuesta != 0 ) {
 			System.out.println("Menu");
 			System.out.println("1. Crear publicacion ");
 			System.out.println("2. Administrar publicaciones ");
+			System.out.println("0. Desloguearse");
 			System.out.print("Ingrese el numero de la opcion : ");
 			respuesta = scanner.nextInt(); 
 			scanner.nextLine();
@@ -32,6 +33,8 @@ public class MenuEmpleador {
 				crearPublicacion();
 			case 2:
 				administrarPublicaciones();
+			case 0:
+				break;
 		}
 	}
 	private static void crearPublicacion() {
@@ -57,7 +60,7 @@ public class MenuEmpleador {
 				buscarNroPublicacion();
 			case 2:
 				listaPublicaciones();
-			case 3:
+			case 0:
 				mostrarMenu();
 		}
 		

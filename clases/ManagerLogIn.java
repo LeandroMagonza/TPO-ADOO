@@ -23,7 +23,13 @@ public class ManagerLogIn {
         listaPostulantes = new ArrayList<Postulante>();
         listaEmpleadores = new ArrayList<Empleador>();
         listaAdministradores = new ArrayList<Administrador>();
-        leerEmpleadores();
+        try {
+            // date Exception
+            leerEmpleadores();
+            leerAdministradores();
+            leerPostulantes();
+        } catch (Exception e) {
+        }
 
     }
     public static void main(String[] args) {
@@ -33,6 +39,10 @@ public class ManagerLogIn {
             System.out.println("Ingrese su usuario:");
             String usuario = scanner.nextLine();
             System.out.printf("Usuario :" + usuario +"\n");
+            if ("0".equals(usuario)){
+                scanner.close();
+                break;
+            }
             System.out.println("Ingrese su contrasena:");
             String contrasena = scanner.nextLine();
             System.out.printf("Contrasena :" + contrasena +"\n");
@@ -40,11 +50,10 @@ public class ManagerLogIn {
             if (usuarioALoguear != null) {
                 getManagerLogIn().usuarioLogueado = usuarioALoguear;
                 getManagerLogIn().usuarioLogueado.abrirMenu();
-                break;
+                getManagerLogIn().usuarioLogueado = null;
             }
             System.out.println("Nombre de usuario o contrasena incorrectas");
         }
-        scanner.close();
     }
 
     public static ManagerLogIn getManagerLogIn() {
@@ -61,13 +70,22 @@ public class ManagerLogIn {
             	return empleador;
             }
         }
+        for (Postulante postulante : listaPostulantes) {
+            if (postulante.mail.equals(mail) && postulante.contrasena.equals(password)) {
+            	return postulante;
+            }
+        }
+        for (Administrador administrador : listaAdministradores) {
+            if (administrador.mail.equals(mail) && administrador.contrasena.equals(password)) {
+            	return administrador;
+            }
+        }
         return null;
     }
 
   
     public Boolean leerEmpleadores() {
         try {
-        	//borre src solo par martin
             FileReader entrada = new FileReader("src/almacenamientos/empleadores.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
@@ -80,7 +98,6 @@ public class ManagerLogIn {
                     empleador = new Empleador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
                             arrayLinea[3], arrayLinea[4], arrayLinea[5], arrayLinea[6]);
                     listaEmpleadores.add(empleador);
-                    System.out.println(empleador.mail);
                 }
             }
             entrada.close();
@@ -90,13 +107,8 @@ public class ManagerLogIn {
         }
     }
 
-    // Leer Administrador
-    //Boolean estado; 
-    //Date fechaInicio;
-
-    public Boolean leerAdministrador()throws Exception {
-        try {
-            FileReader entrada = new FileReader("almacenamientos/administrador.txt");
+    public Boolean leerAdministradores() throws Exception {
+            FileReader entrada = new FileReader("src/almacenamientos/administradores.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Administrador administrador;
@@ -105,7 +117,7 @@ public class ManagerLogIn {
                 linea = miBuffer.readLine();
                 if (linea != null) {
                     String[] arrayLinea = linea.split(";");
-                    SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
+                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
                     Date fechainicio = formatter1.parse(arrayLinea[6]);
                     Boolean bull  = true;
                     String myString = arrayLinea[5];
@@ -115,24 +127,26 @@ public class ManagerLogIn {
                     else{
                         bull = false;
                     }
-                    administrador = new Administrador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
-                            arrayLinea[3], arrayLinea[4], bull, fechainicio);
+                    administrador = new Administrador(
+                        Integer.parseInt(arrayLinea[0]), 
+                        arrayLinea[1], 
+                        arrayLinea[2],
+                        arrayLinea[3], 
+                        arrayLinea[4],
+                        bull, 
+                        fechainicio);
                     listaAdministradores.add(administrador);
                 }
             }
             entrada.close();
             return true;
-        } catch (IOException e) {
-            return false;
-        }
     }
 
     
     // Leer Postulante
    
-    public Boolean leerPostulante()throws Exception {
-        try {
-            FileReader entrada = new FileReader("almacenamientos/postulante.txt");
+    public Boolean leerPostulantes()throws Exception {
+            FileReader entrada = new FileReader("src/almacenamientos/postulantes.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Postulante postulante;
@@ -141,22 +155,21 @@ public class ManagerLogIn {
                 linea = miBuffer.readLine();
                 if (linea != null) {
                     String[] arrayLinea = linea.split(";");
-                    SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
+                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
                     Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
-                    postulante = new Postulante(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
-                            arrayLinea[3], arrayLinea[4], fechaNacimiento);
+                    postulante = new Postulante(
+                            Integer.parseInt(arrayLinea[0]), 
+                            arrayLinea[1], 
+                            arrayLinea[2],
+                            arrayLinea[3], 
+                            arrayLinea[4], 
+                            fechaNacimiento);
                     listaPostulantes.add(postulante);
+                    System.out.println(postulante.mail);
                 }
             }
             entrada.close();
             return true;
-        } catch (IOException e) {
-            return false;
-        }
     }
 
-
-
-
-    
 }
