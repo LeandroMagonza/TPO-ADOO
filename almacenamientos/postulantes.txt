@@ -1,2 +1,2 @@
-DNI;Nombre;Apellido;Mail;Contraseña;FechaNacimiento
-889;Franco;Sanchez;fsanchez;asd123;26/01/1997;
+DNI;Nombre;Apellido;Mail;Contraseña;FechaNacimiento;Intereses
+889;Franco;Sanchez;fsanchez;asd123;26/01/1997;IT/Sistemas/Administracion

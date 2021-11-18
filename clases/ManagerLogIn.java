@@ -157,13 +157,19 @@ public class ManagerLogIn {
                     String[] arrayLinea = linea.split(";");
                     SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
                     Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
+                    ArrayList<Categoria> intereses = new ArrayList<Categoria>();
+                    String[] interesesAProcesar = arrayLinea[6].split("/");
+                    for (String interesString : interesesAProcesar) {
+                        intereses.add(Categoria.transform(interesString));
+                    }
                     postulante = new Postulante(
                             Integer.parseInt(arrayLinea[0]), 
                             arrayLinea[1], 
                             arrayLinea[2],
                             arrayLinea[3], 
                             arrayLinea[4], 
-                            fechaNacimiento);
+                            fechaNacimiento,
+                            intereses);
                     listaPostulantes.add(postulante);
                     System.out.println(postulante.mail);
                 }

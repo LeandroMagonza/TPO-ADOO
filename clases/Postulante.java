@@ -11,8 +11,9 @@ public class Postulante extends Usuario {
     ArrayList<Categoria> intereses;
     ArrayList<Publicacion> publicacionesFavoritas;
 
-    public Postulante(int dni,String nombre,String apellido,String mail, String contrasena,Date fechaNacimiento){
+    public Postulante(int dni,String nombre,String apellido,String mail, String contrasena,Date fechaNacimiento,ArrayList<Categoria> intereses){
         super(dni,nombre,apellido,mail,contrasena);
+        this.intereses = intereses;
         this.fechaNacimiento = fechaNacimiento;
     }
 
