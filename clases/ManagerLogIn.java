@@ -1,11 +1,14 @@
 package clases;
 import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat; 
+import java.text.ParseException;
 
 public class ManagerLogIn {
     // atributo
@@ -86,6 +89,74 @@ public class ManagerLogIn {
             return false;
         }
     }
+
+    // Leer Administrador
+    //Boolean estado; 
+    //Date fechaInicio;
+
+    public Boolean leerAdministrador()throws Exception {
+        try {
+            FileReader entrada = new FileReader("almacenamientos/administrador.txt");
+            BufferedReader miBuffer = new BufferedReader(entrada);
+            String linea = "";
+            Administrador administrador;
+            miBuffer.readLine();
+            while (linea != null) {
+                linea = miBuffer.readLine();
+                if (linea != null) {
+                    String[] arrayLinea = linea.split(";");
+                    SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
+                    Date fechainicio = formatter1.parse(arrayLinea[6]);
+                    Boolean bull  = true;
+                    String myString = arrayLinea[5];
+                    if ("true".equals(myString)){
+                        bull = true;
+                    }
+                    else{
+                        bull = false;
+                    }
+                    administrador = new Administrador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
+                            arrayLinea[3], arrayLinea[4], bull, fechainicio);
+                    listaAdministradores.add(administrador);
+                }
+            }
+            entrada.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    
+    // Leer Postulante
+   
+    public Boolean leerPostulante()throws Exception {
+        try {
+            FileReader entrada = new FileReader("almacenamientos/postulante.txt");
+            BufferedReader miBuffer = new BufferedReader(entrada);
+            String linea = "";
+            Postulante postulante;
+            miBuffer.readLine();
+            while (linea != null) {
+                linea = miBuffer.readLine();
+                if (linea != null) {
+                    String[] arrayLinea = linea.split(";");
+                    SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
+                    Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
+                    postulante = new Postulante(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
+                            arrayLinea[3], arrayLinea[4], fechaNacimiento);
+                    listaPostulantes.add(postulante);
+                }
+            }
+            entrada.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+
+
 
     
 }
