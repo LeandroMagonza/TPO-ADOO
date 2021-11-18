@@ -13,7 +13,6 @@ public class ManagerPublicacion {
     private ManagerPublicacion() throws Exception {
         listaPublicaciones = new ArrayList<Publicacion>();
         leerPublicaciones();
-
     }
 
 	public static ManagerPublicacion getManagerPublicacion() {
@@ -27,22 +26,31 @@ public class ManagerPublicacion {
 
     public Boolean leerPublicaciones() throws Exception, Exception {
     	try {
-    		FileReader entrada = new FileReader("almacenamientos/publicaciones.txt");
+    		FileReader entrada = new FileReader("src/almacenamientos/publicaciones.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Publicacion publicacion;
             miBuffer.readLine();
             while (linea != null) {
-                linea = miBuffer.readLine();
-                if (linea != null) {
-                    String[] arrayLinea = linea.split(";");
-                    publicacion = new Publicacion(Integer.parseInt(arrayLinea[0]), Integer.parseInt(arrayLinea[1]), arrayLinea[2],arrayLinea[3],
-                            arrayLinea[4], arrayLinea[5], arrayLinea[6],  Integer.parseInt(arrayLinea[7]), arrayLinea[8],
-                             arrayLinea[9], arrayLinea[10].equalsIgnoreCase("true"), arrayLinea[11], arrayLinea[12].equalsIgnoreCase("true"));
-                    listaPublicaciones.add(publicacion);
-                }
+				linea = miBuffer.readLine();
+				String[] arrayLinea = linea.split(";");
+				publicacion = new Publicacion(
+					Integer.parseInt(arrayLinea[0]), 
+					Integer.parseInt(arrayLinea[1]), 
+					arrayLinea[2],
+					arrayLinea[3],
+					arrayLinea[4], 
+					arrayLinea[5], 
+					arrayLinea[6],  
+					Integer.parseInt(arrayLinea[7]), 
+					arrayLinea[8],
+					arrayLinea[9], 
+					arrayLinea[10].equalsIgnoreCase("true"), 
+					arrayLinea[11], 
+					arrayLinea[12].equalsIgnoreCase("true"));
+				listaPublicaciones.add(publicacion);
             }
-    		return false;
+    		return true;
     	}catch (IOException e) {
             return false;
         }

@@ -37,24 +37,31 @@ public class MenuPostulante {
   
 	public static void mostrarMenu() {
 		Scanner scanner = ManagerLogIn.scanner;
-		
-		int respuesta = 0;
-		while (respuesta != 1 && respuesta != 2 && respuesta != 3) {
-			System.out.println("Menu");
-			System.out.println("1. Elegir Publicacion ");
-			System.out.println("2. Ver publicaciones Favoritas ");
-			System.out.println("3. Ver recomedaciones ");
-			System.out.print("Ingrese el numero de la opcion : ");
-			respuesta = scanner.nextInt(); 
-			scanner.nextLine();
-		}
+		int respuesta = -1;
+		menuPostulante:
+		while (true) {
 			switch(respuesta){
-			case 1:
+				case 1:
 				elegirPublicaciones();
-			case 2:
+				respuesta = -1;
+				case 2:
 				verPublicacionesFavoritas();
-			case 3:
+				respuesta = -1;
+				case 3:
 				verRecomendaciones();
+				respuesta = -1;
+				case 0:
+					respuesta = -1;
+					break menuPostulante;
+				default:
+					System.out.println("Menu - Postulante");
+					System.out.println("1. Elegir Publicacion ");
+					System.out.println("2. Ver publicaciones Favoritas ");
+					System.out.println("3. Ver recomedaciones ");
+					System.out.print("Ingrese el numero de la opcion : ");
+					respuesta = scanner.nextInt(); 
+					scanner.nextLine();
+			}
 		}
 	}
 	/*
