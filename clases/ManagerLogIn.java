@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class ManagerLogIn {
     // atributo
     public Usuario usuarioLogueado;
@@ -86,5 +87,63 @@ public class ManagerLogIn {
         }
     }
 
-    
+
+     public Boolean grabarEmpleador(){
+      try{
+      		FileWriter escritura = new FileWriter ("src/empeladores.txt");
+      		for (Empleador a: listaEmpleadores)
+      		{
+      			String texto = Integer.toString(a.dni)+";"+a.nombre+";"+a.apellido+";"+a.mail+";"+a.contrasena+";"+a.sector+";"+a.empresa;
+      			escritura.write(texto+"\n");
+      		}
+      
+      		escritura.close();
+      		return true;
+      	} catch (IOException e){
+      		return false;
+      		}
+      }
+     
+   
+     //ver idioma en adelante.
+     //ver como pasar fechaNacimiento a string
+     public Boolean grabarPostulante(){
+         try{
+         		FileWriter escritura = new FileWriter ("src/postulante.txt");
+         		for (Postulante p: listaPostulantes)
+         		{
+         		
+         			String texto = Integer.toString(p.dni)+";"+p.nombre+";"+p.apellido+";"+p.mail+";"+p.contrasena+";"+p.fechaNacimiento+";"+p.idiomas+";"+p.intereses+";"+p.nacionalidades+";"+p.publicacionesFavoritas;
+         			escritura.write(texto+"\n");
+         		}
+         
+         		escritura.close();
+         		return true;
+         	} catch (IOException e){
+         		return false;
+         		}
+         }
+   
+     
+     //ver como pasar fechainicio a string
+    public Boolean grabarAdministrador(){
+         try{
+         		FileWriter escritura = new FileWriter ("src/administrador.txt");
+         		for (Administrador a: listaAdministradores)
+         		{
+         			String texto = a.dni+";"+a.nombre+";"+a.apellido+";"+a.mail+";"+a.contrasena+";"+a.estado+";"+a.fechaInicio;
+         			escritura.write(texto+"\n");
+         		}
+         
+         		escritura.close();
+         		return true;
+         	} catch (IOException e){
+         		return false;
+         		}
+         }
+
+         
+
+        
+        
 }

@@ -14,4 +14,5 @@ public class Empleador extends Usuario{
         MenuEmpleador.mostrarMenu();
         
     }
-}
+    
+  }
