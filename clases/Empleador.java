@@ -13,4 +13,5 @@ public class Empleador extends Usuario{
         System.out.println("logueado como: Empleador");
         MenuEmpleador.mostrarMenu();
     }
-}
+    
+  }
