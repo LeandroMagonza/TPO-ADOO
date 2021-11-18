@@ -1,0 +1,2 @@
+DNI;Nombre;Apellido;Mail;Contraseña;Estado;FechaInicio
+885;Tomas;Orobio;orotomas;asd123;true;25/03/2020

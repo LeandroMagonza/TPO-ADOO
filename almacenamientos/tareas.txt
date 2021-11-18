@@ -1,2 +1,8 @@
-1;2;3;4
-Programar;Diseñar;Supervisar;Controlar
+id;Nombre
+1;Programar
+2;Diseñar
+3;Supervisar
+4;Controlar
+
+
+
