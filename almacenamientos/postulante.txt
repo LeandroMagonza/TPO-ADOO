@@ -1,1 +1,3 @@
+DNI;Nombre;Apellido;Mail;Contraseña;FechaNacimiento
 884;Franco;Sanchez;asd123;Sistemas;Uade
+999;Tomas;Orobio;asd123;Administracion;Uade

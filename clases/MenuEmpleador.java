@@ -79,7 +79,7 @@ public class MenuEmpleador {
 		System.out.println("Ingrese el nro de la empresa");
 		int empleador = ManagerLogIn.scanner.nextInt();
 		ManagerLogIn.scanner.nextLine();
-		ArrayList<Publicacion> lista = ManagerPublicacion.listado(empleador);
+		ArrayList<Publicacion> lista = ManagerPublicacion.listadoPorEmpresa(empleador);
 		for(Publicacion publicacion: lista) {
 			System.out.println("Nro: "+publicacion.getNroPublicacion());
 			System.out.println("Descripcion: "+publicacion.getDescripcion());

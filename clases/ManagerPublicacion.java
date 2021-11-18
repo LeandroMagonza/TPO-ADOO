@@ -16,6 +16,16 @@ public class ManagerPublicacion {
         leerPublicaciones();
 
     }
+
+	public static ManagerPublicacion getManagerPublicacion() {
+		if (instanciaPublicacion == null)  { try {
+			instanciaPublicacion = new ManagerPublicacion();
+		} catch(Exception e){
+		} 
+        }
+		return instanciaPublicacion;
+	}
+
     public Boolean leerPublicaciones() throws Exception, Exception {
     	try {
     		FileReader entrada = new FileReader("almacenamientos/publicaciones.txt");
@@ -50,10 +60,20 @@ public class ManagerPublicacion {
     }
     
     //muestra las publicaciones de la empresa e
-    public static ArrayList<Publicacion> listado(int e){
+    public static ArrayList<Publicacion> listadoPorEmpresa(int e){
     	ArrayList<Publicacion> listaResultado = new ArrayList<Publicacion>();
     	for(Publicacion publicacion: listaPublicaciones) {
     		if(publicacion.getNroEmpresa()== e) {
+    			listaResultado.add(publicacion);
+    		}
+    	}
+		return listaResultado;
+    	
+    }
+    public static ArrayList<Publicacion> listadoActivas(){
+    	ArrayList<Publicacion> listaResultado = new ArrayList<Publicacion>();
+    	for(Publicacion publicacion: listaPublicaciones) {
+    		if(publicacion.getPublicacionActiva()){
     			listaResultado.add(publicacion);
     		}
     	}

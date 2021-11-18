@@ -10,59 +10,118 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuPostulante {
-    // crear publicacion
-    // ver publicaciones {
-    //      modificar publicacion
-    //      eliminar publicacion
-    //      ver postulantes de publicacion
-    // }
+    /*
+	Menu principal postulante
+
+    1. Ver publicaciones
+        1. Elegir Publicacion
+            1. Postularse 
+            2. Agregarla a Favoritos
+            0. Volver
+        0. Volver
+
+    2. Ver publicaciones Favoritas
+        1. Elegir publicacion Favorita
+            1. Postularse
+            2. Elimiar de favoritos
+            0. Volver
+        0. Volver
+
+    3. Ver recomedaciones
+        1. Elegir publicacion Favorita
+            1. Postularse
+            2. Agregarla a favoritos
+            0. Volver
+        0. Volver
+    */      
+  
 	public static void mostrarMenu() {
 		Scanner scanner = ManagerLogIn.scanner;
+		
 		int respuesta = 0;
-		while (respuesta != 1 && respuesta != 2) {
+		while (respuesta != 1 && respuesta != 2 && respuesta != 3) {
 			System.out.println("Menu");
-			System.out.println("1. Crear publicacion ");
-			System.out.println("2. Administrar publicaciones ");
+			System.out.println("1. Elegir Publicacion ");
+			System.out.println("2. Ver publicaciones Favoritas ");
+			System.out.println("3. Ver recomedaciones ");
 			System.out.print("Ingrese el numero de la opcion : ");
 			respuesta = scanner.nextInt(); 
 			scanner.nextLine();
 		}
 			switch(respuesta){
 			case 1:
-				crearPublicacion();
+				elegirPublicaciones();
 			case 2:
-				administrarPublicaciones();
+				verPublicacionesFavoritas();
+			case 3:
+				verRecomendaciones();
 		}
 	}
-	private static void crearPublicacion() {
+	/*
+	1. Ver publicaciones
+		1. Elegir Publicacion
+			1. Postularse 
+			2. Agregarla a Favoritos
+			0. Volver
+		0. Volver
+	*/
+	private static void elegirPublicaciones() {
+		ManagerPublicacion managerPublicacion = ManagerPublicacion.getManagerPublicacion();
 		Scanner scanner = ManagerLogIn.scanner;
 		String respuesta = "";
-		System.out.println("Usted ha seleccionado crear publicacion");
+		System.out.println("Usted ha seleccionado elegir publicacion");
+		System.out.println("Listado de Publicaciones: ");
 		
+		for (Publicacion publicacionActiva : managerPublicacion.listadoActivas()) {
+			System.out.println("");
+		}
 	}
-	private static void administrarPublicaciones() {
+
+	/*
+	2. Ver publicaciones Favoritas
+        1. Elegir publicacion Favorita
+            1. Postularse
+            2. Elimiar de favoritos
+            0. Volver
+        0. Volver
+		*/
+
+	private static void verPublicacionesFavoritas() {
 		Scanner scanner = ManagerLogIn.scanner;
 		int respuesta = 0;
-		System.out.println("Usted ha seleccionado ver publicacion");
-		while ((respuesta != 1) && (respuesta != 2) && (respuesta != 3)) {
-			System.out.println("1. Buscar con el Nro de publicacion");
-			System.out.println("2. Mostrar Listado");
-			System.out.println("3. Volver al menu anterior");
+		System.out.println("Usted ha seleccionado ver publicaciones favoritas");
+		System.out.println("Listado de Publicaciones Favoritas : ");
+		//!!ACA insertar codigo que lea archivo publicacionesfavoritas.txt
+
+		while ((respuesta != 1) && (respuesta != 2) && (respuesta != 0)) {
+			System.out.println("1. Postularse");
+			System.out.println("2. Eliminar de favoritos");
+			System.out.println("0. Volver al menu anterior");
 			System.out.println("Ingrese el numero de la opcion : ");
 			respuesta = scanner.nextInt();
 			scanner.nextLine();
 		}
 		switch(respuesta){
 			case 1:
-				buscarNroPublicacion();
+				//postularse();
 			case 2:
-				listaPublicaciones();
-			case 3:
+				//eliminarFavoritos();
+			case 0:
 				mostrarMenu();
 		}
 		
 	}
+
+	private static void verRecomendaciones() {
+		Scanner scanner = ManagerLogIn.scanner;
+		String respuesta = "";
+		System.out.println("Usted ha seleccionado ver recomendaciones");
+		System.out.println("Listado de Publicaciones Recomendadas para sus intereses: ");
+		//!!ACA insertar codigo que lea archivo recomendaciones.txt
 	
+	}
+
+	/*
 	//se busca por nro de publicacion
 	private static void buscarNroPublicacion() {
 		System.out.println("Ingrese el nro de la publicacion");
@@ -155,6 +214,6 @@ public class MenuPostulante {
 	private static void buscarPublicacionXNro() {
 
 	}
-	
+	*/
 	
 }
