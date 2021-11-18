@@ -38,7 +38,7 @@ public class ManagerPublicacion {
                     String[] arrayLinea = linea.split(";");
                     publicacion = new Publicacion(Integer.parseInt(arrayLinea[0]), Integer.parseInt(arrayLinea[1]), arrayLinea[2],arrayLinea[3],
                             arrayLinea[4], arrayLinea[5], arrayLinea[6],  Integer.parseInt(arrayLinea[7]), arrayLinea[8],
-                             arrayLinea[9], arrayLinea[10].equalsIgnoreCase("true"), arrayLinea[11], arrayLinea[12].equalsIgnoreCase("true"));
+                             arrayLinea[9], arrayLinea[10].equalsIgnoreCase("true"), arrayLinea[11], arrayLinea[12].equalsIgnoreCase("true"), arrayLinea[13]);
                     listaPublicaciones.add(publicacion);
                 }
             }
@@ -90,12 +90,6 @@ public class ManagerPublicacion {
 		return listaResultado;
     }
 
-    //oferta laboral mas popular de un mes o año FALTA
-    public static Publicacion masPopularYear(int year) {
-    	
-    	return null;
-    }
-    
     //oferta labora mas accesible modalidad part, remoto, requisitos tareas
     public static Publicacion masAccesible() {
     	Publicacion masAc = null;

@@ -13,7 +13,7 @@ import java.text.ParseException;
 public class ManagerLogIn {
     // atributo
     public Usuario usuarioLogueado;
-    private ArrayList<Postulante> listaPostulantes;
+    private static ArrayList<Postulante> listaPostulantes;
     private ArrayList<Empleador> listaEmpleadores;
     private ArrayList<Administrador> listaAdministradores;
     private static ManagerLogIn instanciaLogIn;
@@ -176,6 +176,13 @@ public class ManagerLogIn {
             }
             entrada.close();
             return true;
+    }
+    public static Postulante devolverPostulante(int i) {
+    	for(Postulante postulante : listaPostulantes) {
+    		if(postulante.dni == i)
+    			return postulante;
+    	}
+    	return null;
     }
 
 }

@@ -19,11 +19,12 @@ public class Publicacion {
     private Boolean requiereTitulo;
     private Date vigencia;
     private Boolean publicacionActiva;
+    private ArrayList<Postulacion> postulaciones;
     public Publicacion(
     		int nroPublicacion, int nroEmpresa, String descripcion,	String modalidadStr,
     		String categoriaStr, String lugar, String tipoTrabajoStr,
     		int sueldo, String requisitosStr, String tareasARealizarStr,
-    		boolean requiereTitulo, String vigenciaStr, boolean publicacionActiva) throws Exception {
+    		boolean requiereTitulo, String vigenciaStr, boolean publicacionActiva,String postulacionesStr) throws Exception {
     	SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
     	this.nroPublicacion = nroPublicacion;
     	this.nroEmpresa = nroEmpresa;
@@ -38,9 +39,11 @@ public class Publicacion {
     	this.requiereTitulo = requiereTitulo;
     	this.vigencia= formatter1.parse(vigenciaStr);  
     	this.publicacionActiva = publicacionActiva;
+    	this.postulaciones = ManagerPostulacion.dividir(postulacionesStr);
     	
     	
     }
+    
 	public int getNroPublicacion() {
 		return nroPublicacion;
 	}
@@ -79,6 +82,9 @@ public class Publicacion {
 	}
 	public Boolean getPublicacionActiva() {
 		return publicacionActiva;
+	}
+	public ArrayList<Postulacion> getPostulaciones() {
+		return postulaciones;
 	}
     
     

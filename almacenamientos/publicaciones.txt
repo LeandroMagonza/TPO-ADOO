@@ -1,2 +1,2 @@
-NroPublicacion;Descripcion;Modalidad;Categoria;Lugar;TipoTrabajo;Sueldo;Requisitos;Tareas;Titulo;Vigencia;Activa
+NroPublicacion;Nro Empresa;Descripcion;Modalidad;Categoria;Lugar;TipoTrabajo;Sueldo;Requisitos;Tareas;Titulo;Vigencia;Activa;Postulaciones
 
