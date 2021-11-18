@@ -21,11 +21,20 @@ public class Publicacion {
     private Boolean publicacionActiva;
 
     public Publicacion(
-    		int nroPublicacion, int cuitEmpresa, String descripcion,	String modalidadStr,
-    		String categoriaStr, String lugar, String tipoTrabajoStr,
-    		int sueldo, String requisitosStr, String tareasARealizarStr,
-    		boolean requiereTitulo, String vigenciaStr, boolean publicacionActiva) throws Exception {
-		SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
+    		int nroPublicacion, 
+			int cuitEmpresa, 
+			String descripcion,	
+			String modalidadStr,
+    		String categoriaStr, 
+			String lugar, 
+			String tipoTrabajoStr,
+    		int sueldo, 
+			String requisitosStr, 
+			String tareasARealizarStr,
+    		boolean requiereTitulo, 
+			String vigenciaStr, 
+			boolean publicacionActiva) throws Exception {
+		SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");  
 		this.nroPublicacion = nroPublicacion;
 		this.cuitEmpresa = cuitEmpresa;
 		this.descripcion = descripcion;

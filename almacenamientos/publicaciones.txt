@@ -1,3 +1,3 @@
 NroPublicacion;cuitEmpresa;Descripcion;Modalidad;Categoria;Lugar;TipoTrabajo;Sueldo;Requisitos;Tareas;Titulo;Vigencia;Activa
 1;20086665;Desarrollador Web;PartTime;Sistemas;UADE;Presencial;350000;1;1:3;true;20/12/2021;true;
-2;20086665;Limpieza;PartTime;Mantenimiento;UADE;Remoto;70000;1;2;true;20/12/2021;true;
+2;20086665;Limpieza;PartTime;Administracion;UADE;Remoto;70000;1;2;true;20/12/2021;true;
