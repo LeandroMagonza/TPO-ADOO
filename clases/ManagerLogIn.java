@@ -12,6 +12,7 @@ import java.text.ParseException;
 
 
 public class ManagerLogIn {
+
     // atributo
     public Usuario usuarioLogueado;
     private ArrayList<Postulante> listaPostulantes;
@@ -116,7 +117,38 @@ public class ManagerLogIn {
         }
     }
 
-
+    public Boolean leerPostulantes()throws Exception {
+        FileReader entrada = new FileReader("src/almacenamientos/postulantes.txt");
+        BufferedReader miBuffer = new BufferedReader(entrada);
+        String linea = "";
+        Postulante postulante;
+        miBuffer.readLine();
+        while (linea != null) {
+            linea = miBuffer.readLine();
+            if (linea != null) {
+                String[] arrayLinea = linea.split(";");
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
+                Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
+                ArrayList<Categoria> intereses = new ArrayList<Categoria>();
+                String[] interesesAProcesar = arrayLinea[6].split("/");
+                for (String interesString : interesesAProcesar) {
+                    intereses.add(Categoria.transform(interesString));
+                }
+                postulante = new Postulante(
+                        Integer.parseInt(arrayLinea[0]), 
+                        arrayLinea[1], 
+                        arrayLinea[2],
+                        arrayLinea[3], 
+                        arrayLinea[4], 
+                        fechaNacimiento,
+                        intereses);
+                listaPostulantes.add(postulante);
+            }
+        }
+        entrada.close();
+        return true;
+}
+    
      public Boolean grabarEmpleador(){
       try{
       		FileWriter escritura = new FileWriter ("src/empeladores.txt");
@@ -134,15 +166,15 @@ public class ManagerLogIn {
       }
      
    
-     //ver idioma en adelante.
      //ver como pasar fechaNacimiento a string
      public Boolean grabarPostulante(){
+    	 
          try{
          		FileWriter escritura = new FileWriter ("src/postulante.txt");
          		for (Postulante p: listaPostulantes)
          		{
          		
-         			String texto = Integer.toString(p.dni)+";"+p.nombre+";"+p.apellido+";"+p.mail+";"+p.contrasena+";"+p.fechaNacimiento+";"+p.idiomas+";"+p.intereses+";"+p.nacionalidades+";"+p.publicacionesFavoritas;
+         			String texto = Integer.toString(p.dni)+";"+p.nombre+";"+p.apellido+";"+unir(p.idiomas)+";"+unir3(p.intereses)+";"+unir2(p.nacionalidades)+";"+unir4(p.publicacionesFavoritas);
          			escritura.write(texto+"\n");
          		}
          
@@ -151,9 +183,48 @@ public class ManagerLogIn {
          	} catch (IOException e){
          		return false;
          		}
-         }
-   
+         
+              
+          
+        }
      
+       
+     public static String unir(ArrayList<Idioma> idiomas){
+      	String idiomaStr = "";
+      	for(Idioma i: idiomas){
+      		idiomaStr = idiomaStr+":"+i;
+          	}
+  		return idiomaStr;
+      	
+      }
+        
+     public static String unir2(ArrayList<Nacionalidad> nacionalidades){
+        	String nacionalidadStr = "";
+        	for(Nacionalidad i: nacionalidades){
+        		nacionalidadStr = nacionalidadStr+":"+i;
+            	}
+    		return nacionalidadStr;
+        	
+        }
+     
+     public static String unir3(ArrayList<Categoria> intereses){
+     	String interesesStr = "";
+     	for(Categoria i: intereses){
+     		interesesStr = interesesStr+":"+i;
+         	}
+ 		return interesesStr;
+     	
+     }
+     
+     public static String unir4( ArrayList<Publicacion> publicacionesFavoritas){
+      	String pubfavStr = "";
+      	for(Publicacion i: publicacionesFavoritas){
+      		pubfavStr = pubfavStr+":"+i;
+          	}
+  		return pubfavStr;
+      	
+      }
+       
      //ver como pasar fechainicio a string
     public Boolean grabarAdministrador(){
          try{
@@ -170,7 +241,7 @@ public class ManagerLogIn {
          		return false;
          		}
          }
-
+      	
          
     public Boolean leerAdministradores() throws Exception {
             FileReader entrada = new FileReader("src/almacenamientos/administradores.txt");
@@ -208,38 +279,6 @@ public class ManagerLogIn {
     }
 
     
-    // Leer Postulante
-   
-    public Boolean leerPostulantes()throws Exception {
-            FileReader entrada = new FileReader("src/almacenamientos/postulantes.txt");
-            BufferedReader miBuffer = new BufferedReader(entrada);
-            String linea = "";
-            Postulante postulante;
-            miBuffer.readLine();
-            while (linea != null) {
-                linea = miBuffer.readLine();
-                if (linea != null) {
-                    String[] arrayLinea = linea.split(";");
-                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
-                    Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
-                    ArrayList<Categoria> intereses = new ArrayList<Categoria>();
-                    String[] interesesAProcesar = arrayLinea[6].split("/");
-                    for (String interesString : interesesAProcesar) {
-                        intereses.add(Categoria.transform(interesString));
-                    }
-                    postulante = new Postulante(
-                            Integer.parseInt(arrayLinea[0]), 
-                            arrayLinea[1], 
-                            arrayLinea[2],
-                            arrayLinea[3], 
-                            arrayLinea[4], 
-                            fechaNacimiento,
-                            intereses);
-                    listaPostulantes.add(postulante);
-                }
-            }
-            entrada.close();
-            return true;
-    }
+
 
 }
