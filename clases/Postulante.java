@@ -15,12 +15,12 @@ public class Postulante extends Usuario {
         super(dni,nombre,apellido,mail,contrasena);
         this.intereses = intereses;
         this.fechaNacimiento = fechaNacimiento;
-    } 
-    
-    public void abrirMenu() {
-    	System.out.println("logueado como: Postulante");
-    	MenuEmpleador.mostrarMenu();
     }
 
-  
+    public void abrirMenu(){
+        System.out.println("logueado como: Postulante");
+        MenuPostulante.mostrarMenu();
+        
+    }
+
 }

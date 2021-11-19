@@ -2,7 +2,7 @@ package clases;
 
 public enum Categoria {
 
-	IT,Sistemas,RRHH,Administracion,Ingenieria,Abogacia,Misc;
+	IT,Sistemas,RRHH,Administracion,Ingenieria,Abogacia;
 
 	public static Categoria transform(String s) {
 		if(s.equalsIgnoreCase(IT.name()))
@@ -18,6 +18,6 @@ public enum Categoria {
 		else if(s.equalsIgnoreCase(Abogacia.name()))
 			return Abogacia;
 		else
-			return Misc;
+			return null;
 	}
 }

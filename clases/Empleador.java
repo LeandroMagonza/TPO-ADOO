@@ -2,16 +2,15 @@ package clases;
 
 public class Empleador extends Usuario{
     String sector;
-    int empresa;
-    public Empleador(int dni,String nombre,String apellido,String mail, String contrasena,String sector,int empresa){
+    Empresa empresa;
+    public Empleador(int dni,String nombre,String apellido,String mail, String contrasena,String sector,String empresa){
         super(dni,nombre,apellido,mail,contrasena);
         this.sector = sector;
-        this.empresa = empresa;
+        this.empresa = new Empresa();
     }
 
     public void abrirMenu(){
-        System.out.println("logueado como: Empleador");
+        System.out.println("logueado como: empleador");
         MenuEmpleador.mostrarMenu();
     }
-    
-  }
+}
