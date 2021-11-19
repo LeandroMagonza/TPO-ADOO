@@ -20,6 +20,7 @@ public class Publicacion {
     private Date vigencia;
     private Boolean publicacionActiva;
 
+
     public Publicacion(
     		int nroPublicacion, 
 			int cuitEmpresa, 
@@ -52,6 +53,7 @@ public class Publicacion {
     	
     	
     }
+    
 	public int getNroPublicacion() {
 		return nroPublicacion;
 	}
@@ -90,6 +92,9 @@ public class Publicacion {
 	}
 	public Boolean getPublicacionActiva() {
 		return publicacionActiva;
+	}
+	public ArrayList<Postulacion> getPostulaciones() {
+		return postulaciones;
 	}
     
     

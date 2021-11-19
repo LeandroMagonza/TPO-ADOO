@@ -98,12 +98,6 @@ public class ManagerPublicacion {
 		return listaResultado;
     }
 
-    //oferta laboral mas popular de un mes o año FALTA
-    public static Publicacion masPopularYear(int year) {
-    	
-    	return null;
-    }
-    
     //oferta labora mas accesible modalidad part, remoto, requisitos tareas
     public static Publicacion masAccesible() {
     	Publicacion masAc = null;

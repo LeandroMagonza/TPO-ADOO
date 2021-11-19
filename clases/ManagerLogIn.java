@@ -15,7 +15,7 @@ public class ManagerLogIn {
 
     // atributo
     public Usuario usuarioLogueado;
-    private ArrayList<Postulante> listaPostulantes;
+    private static ArrayList<Postulante> listaPostulantes;
     private ArrayList<Empleador> listaEmpleadores;
     private ArrayList<Administrador> listaAdministradores;
     private static ManagerLogIn instanciaLogIn;
@@ -277,8 +277,5 @@ public class ManagerLogIn {
             entrada.close();
             return true;
     }
-
-    
-
 
 }
