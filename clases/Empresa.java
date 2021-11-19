@@ -1,7 +1,7 @@
 package clases;
 
 public class Empresa{
-    int cuitEmpresa;
+    int nroEmpresa;
     String nombre;
     String direccion;
     String localidad;
