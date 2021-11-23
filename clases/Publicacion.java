@@ -7,39 +7,39 @@ import java.text.SimpleDateFormat;
 
 public class Publicacion {
     private int nroPublicacion;
-    private int nroEmpresa;
+    private int cuitEmpresa;
     private String descripcion;
     private Modalidad modalidad;
     private Categoria categoria;
     private String lugar;
     private TipoTrabajo tipoTrabajo;
     private int sueldo;
-    private ArrayList<Requisito> requisitos;
-    private ArrayList<Tarea> tareasARealizar;
+    private ArrayList<Requisito> requisitos = new ArrayList<Requisito>();
+    private ArrayList<Tarea> tareasARealizar =new ArrayList<Tarea>();
     private Boolean requiereTitulo;
     private Date vigencia;
     private Boolean publicacionActiva;
     private ArrayList<Postulacion> postulaciones;
     public Publicacion(
-    		int nroPublicacion, int nroEmpresa, String descripcion,	String modalidadStr,
+    		int nroPublicacion, int cuitEmpresa, String descripcion,	String modalidadStr,
     		String categoriaStr, String lugar, String tipoTrabajoStr,
     		int sueldo, String requisitosStr, String tareasARealizarStr,
     		boolean requiereTitulo, String vigenciaStr, boolean publicacionActiva,String postulacionesStr) throws Exception {
-    	SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
-    	this.nroPublicacion = nroPublicacion;
-    	this.nroEmpresa = nroEmpresa;
-    	this.descripcion = descripcion;
-    	this.modalidad = Modalidad.transform(modalidadStr);
-    	this.categoria = Categoria.transform(categoriaStr);
-    	this.lugar = lugar;
-    	this.tipoTrabajo = TipoTrabajo.transform(tipoTrabajoStr);
-    	this.sueldo = sueldo;
-    	this.requisitos = ManagerRequisito.dividir(requisitosStr);
-    	this.tareasARealizar = ManagerTarea.dividir(tareasARealizarStr);
-    	this.requiereTitulo = requiereTitulo;
-    	this.vigencia= formatter1.parse(vigenciaStr);  
+		SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
+		this.nroPublicacion = nroPublicacion;
+		this.cuitEmpresa = cuitEmpresa;
+		this.descripcion = descripcion;
+		this.modalidad = Modalidad.transform(modalidadStr);
+		this.categoria = Categoria.transform(categoriaStr);
+		this.lugar = lugar;
+		this.tipoTrabajo = TipoTrabajo.transform(tipoTrabajoStr);
+		this.sueldo = sueldo;
+		// this.requisitos = ManagerRequisito.dividir(requisitosStr);
+		// this.tareasARealizar = ManagerTarea.dividir(tareasARealizarStr);
+		this.requiereTitulo = requiereTitulo;
+		this.vigencia= formatter1.parse(vigenciaStr);  
     	this.publicacionActiva = publicacionActiva;
-    	this.postulaciones = ManagerPostulacion.dividir(postulacionesStr);
+		this.postulaciones = ManagerPostulacion.dividir(postulacionesStr);
     	
     	
     }
@@ -48,7 +48,7 @@ public class Publicacion {
 		return nroPublicacion;
 	}
 	public int getNroEmpresa() {
-		return nroEmpresa;
+		return cuitEmpresa;
 	}
 	public String getDescripcion() {
 		return descripcion;

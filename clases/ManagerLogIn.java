@@ -52,7 +52,9 @@ public class ManagerLogIn {
                 getManagerLogIn().usuarioLogueado.abrirMenu();
                 getManagerLogIn().usuarioLogueado = null;
             }
-            System.out.println("Nombre de usuario o contrasena incorrectas");
+            else{
+                System.out.println("Nombre de usuario o contrasena incorrectas");
+            }
         }
     }
 
@@ -95,8 +97,14 @@ public class ManagerLogIn {
                 linea = miBuffer.readLine();
                 if (linea != null) {
                     String[] arrayLinea = linea.split(";");
-                    empleador = new Empleador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
-                            arrayLinea[3], arrayLinea[4], arrayLinea[5], arrayLinea[6]);
+                    empleador = new Empleador(
+                        Integer.parseInt(arrayLinea[0]), 
+                        arrayLinea[1], 
+                        arrayLinea[2],
+                        arrayLinea[3], 
+                        arrayLinea[4], 
+                        arrayLinea[5], 
+                        Integer.parseInt(arrayLinea[6]));
                     listaEmpleadores.add(empleador);
                 }
             }
@@ -171,7 +179,6 @@ public class ManagerLogIn {
                             fechaNacimiento,
                             intereses);
                     listaPostulantes.add(postulante);
-                    System.out.println(postulante.mail);
                 }
             }
             entrada.close();
