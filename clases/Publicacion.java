@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 //String sDate1="31/12/1998";  formato en string
 
 public class Publicacion {
+	private Estado estado;
     private int nroPublicacion;
     private Empresa empresa;
     private String descripcion;
@@ -34,7 +35,8 @@ public class Publicacion {
     		boolean requiereTitulo, 
 			String vigenciaStr, 
 			boolean publicacionActiva, 
-			String postulacionesStr) throws Exception {
+			String postulacionesStr,
+			int cantDiasDeVigencia) throws Exception {
 		SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");  
 		this.nroPublicacion = nroPublicacion;
 		this.empresa = empresa;
@@ -46,6 +48,7 @@ public class Publicacion {
 		this.sueldo = sueldo;
 		// this.requisitos = ManagerRequisito.dividir(requisitosStr);
 		// this.tareasARealizar = ManagerTarea.dividir(tareasARealizarStr);
+		this.cambiarEstado(new EstadoAbierta(cantDiasDeVigencia));
 		this.requiereTitulo = requiereTitulo;
 		this.vigencia= formatter1.parse(vigenciaStr);  
     	this.publicacionActiva = publicacionActiva;
@@ -99,8 +102,21 @@ public class Publicacion {
 	public ArrayList<Postulacion> getPostulaciones() {
 		return postulaciones;
 	}
-    
-    
+	public void abrir(){
+		estado.abrir(this);
+    }
+    public void cerrar(){
+		estado.cerrar(this);
+    }
+    public void postular(Postulante postulante){
+		estado.postular(this,postulante);
+    }
+	public void cambiarEstado(Estado nuevoEstado){
+		estado = nuevoEstado;
+	}
+	public void pasarDia(){
+		estado.pasarDia(this);
+	}
 
     
 }

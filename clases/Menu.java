@@ -65,7 +65,7 @@ public class Menu {
 		System.out.println("Ingrese el nro de la empresa");
 		int empleador = ManagerLogIn.scanner.nextInt();
 		ManagerLogIn.scanner.nextLine();
-		listaPublicacionesDeEmpresa(empleador);
+		listaPublicacionesDeEmpresa(ManagerEmpresa.getManagerEmpresa().getEmpresaPorCuit(empleador));
 	}
 	
 	//muestra la opcion una vez que seleccionamos una publicacion
@@ -101,9 +101,6 @@ public class Menu {
 		
 	}
 
-	private static void buscarPublicacionXNro() {
-
-	}
 	
 	
 }

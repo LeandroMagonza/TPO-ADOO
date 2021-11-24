@@ -51,7 +51,7 @@ public class MenuEmpleador extends Menu{
 		Scanner scanner = ManagerLogIn.scanner;
 		String respuesta = "";
 		Empleador empleadorLogueado = (Empleador) ManagerLogIn.getManagerLogIn().usuarioLogueado;
-		int cuitEmpresa = empleadorLogueado.empresa;
+		Empresa empresa = empleadorLogueado.empresa;
 		System.out.println("Usted ha seleccionado Crear Publicacion");
 		System.out.println("Ingrese la Descripcion: ");
 		String descripcion = scanner.nextLine();

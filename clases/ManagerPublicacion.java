@@ -48,7 +48,8 @@ public class ManagerPublicacion {
 					arrayLinea[10].equalsIgnoreCase("true"), 
 					arrayLinea[11], 
 					arrayLinea[12].equalsIgnoreCase("true"), 
-					arrayLinea[13]);
+					arrayLinea[13],
+					60);
 				listaPublicaciones.add(publicacion);
             }
     		return true;
@@ -134,4 +135,10 @@ public class ManagerPublicacion {
     	}
     	return menosAc;
     }
+
+	public void pasarDia(){
+		for (Publicacion publicacion : listaPublicaciones) {
+			publicacion.pasarDia();
+		}
+	}
 }
