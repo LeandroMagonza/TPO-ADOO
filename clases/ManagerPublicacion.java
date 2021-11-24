@@ -36,7 +36,7 @@ public class ManagerPublicacion {
 				String[] arrayLinea = linea.split(";");
 				publicacion = new Publicacion(
 					Integer.parseInt(arrayLinea[0]), 
-					Integer.parseInt(arrayLinea[1]), 
+					ManagerEmpresa.getManagerEmpresa().getEmpresaPorCuit(Integer.parseInt(arrayLinea[1])), 
 					arrayLinea[2],
 					arrayLinea[3],
 					arrayLinea[4], 
@@ -68,10 +68,10 @@ public class ManagerPublicacion {
     }
     
     //muestra las publicaciones de la empresa e
-    public static ArrayList<Publicacion> listadoPorEmpresa(int e){
+    public static ArrayList<Publicacion> listadoPorEmpresa(Empresa empresa) {
     	ArrayList<Publicacion> listaResultado = new ArrayList<Publicacion>();
     	for(Publicacion publicacion: listaPublicaciones) {
-    		if(publicacion.getNroEmpresa()== e) {
+    		if(publicacion.getEmpresa() == empresa) {
     			listaResultado.add(publicacion);
     		}
     	}

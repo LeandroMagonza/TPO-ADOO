@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class Publicacion {
     private int nroPublicacion;
-    private int cuitEmpresa;
+    private Empresa empresa;
     private String descripcion;
     private Modalidad modalidad;
     private Categoria categoria;
@@ -21,13 +21,13 @@ public class Publicacion {
     private Boolean publicacionActiva;
     private ArrayList<Postulacion> postulaciones;
     public Publicacion(
-    		int nroPublicacion, int cuitEmpresa, String descripcion,	String modalidadStr,
+    		int nroPublicacion, Empresa empresa, String descripcion,	String modalidadStr,
     		String categoriaStr, String lugar, String tipoTrabajoStr,
     		int sueldo, String requisitosStr, String tareasARealizarStr,
     		boolean requiereTitulo, String vigenciaStr, boolean publicacionActiva,String postulacionesStr) throws Exception {
 		SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
 		this.nroPublicacion = nroPublicacion;
-		this.cuitEmpresa = cuitEmpresa;
+		this.empresa = empresa;
 		this.descripcion = descripcion;
 		this.modalidad = Modalidad.transform(modalidadStr);
 		this.categoria = Categoria.transform(categoriaStr);
@@ -47,8 +47,11 @@ public class Publicacion {
 	public int getNroPublicacion() {
 		return nroPublicacion;
 	}
-	public int getNroEmpresa() {
-		return cuitEmpresa;
+	public long getNroEmpresa() {
+		return empresa.cuitEmpresa;
+	}
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 	public String getDescripcion() {
 		return descripcion;

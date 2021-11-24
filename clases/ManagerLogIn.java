@@ -104,7 +104,7 @@ public class ManagerLogIn {
                         arrayLinea[3], 
                         arrayLinea[4], 
                         arrayLinea[5], 
-                        Integer.parseInt(arrayLinea[6]));
+                        ManagerEmpresa.getManagerEmpresa().getEmpresaPorCuit(Integer.parseInt(arrayLinea[6])));
                     listaEmpleadores.add(empleador);
                 }
             }

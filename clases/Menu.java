@@ -48,8 +48,8 @@ public class Menu {
 		mostrarPublicacion(respuesta);
 	}
 
-	protected static void listaPublicacionesDeEmpresa(int empleador) {
-		ArrayList<Publicacion> lista = ManagerPublicacion.getManagerPublicacion().listadoPorEmpresa(empleador);
+	protected static void listaPublicacionesDeEmpresa(Empresa empresa) {
+		ArrayList<Publicacion> lista = ManagerPublicacion.getManagerPublicacion().listadoPorEmpresa(empresa);
 		for(Publicacion publicacion: lista) {
 			System.out.printf("Nro: "+publicacion.getNroPublicacion());
 			System.out.println("    Descripcion: "+publicacion.getDescripcion());
