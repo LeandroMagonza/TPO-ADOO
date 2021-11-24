@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
 
 
 public class MenuEmpleador extends Menu{
-    // crear publicacion
-    // ver publicaciones {
-    //      modificar publicacion
-    //      eliminar publicacion
-    //      ver postulantes de publicacion
+    // .crear publicacion
+    // .ver publicaciones {
+    //  ....modificar publicacion
+    //  ....eliminar publicacion
+    //  ....ver postulantes de publicacion
     // }
 	public static void mostrarMenu() {
 		Scanner scanner = ManagerLogIn.scanner;
@@ -48,10 +48,92 @@ public class MenuEmpleador extends Menu{
 		}
 	}
 	private static void crearPublicacion() {
+		System.out.println("Usted ha seleccionado Crear Publicacion: ");
 		Scanner scanner = ManagerLogIn.scanner;
 		String respuesta = "";
-		System.out.println("Usted ha seleccionado Crear Publicacion");
-		
+		//NroPublicacion;cuitEmpresa;Descripcion;Modalidad;Categoria;Lugar;TipoTrabajo;Sueldo;Requisitos;Tareas;Titulo;Vigencia;Activa		// 20086665;Desarrollador Web;PartTime;;Sistemas;UADE;Presencial;350000;1;1:3;true;20/12/2021;true;
+
+		System.out.println("Nro Publicacion: "); //Nro Publicacion
+		int respuesta1 = scanner.nextInt();
+
+		System.out.println("CUIT: ");			//Cuit
+		int cuit = scanner.nextInt();
+
+		System.out.println("Descripcion: ");	// Descripcion
+		String descrip = scanner.nextLine();
+
+		System.out.println("Modalidad: ");      //Modalidad
+		int index2 = 0;
+		for (Modalidad modalidad : Modalidad.values()) {
+			index2++;
+			System.out.println( index2 + "." + modalidad);
+		}
+		String tipomodalidad = " ";
+		int idmodalidad = scanner.nextInt();
+		scanner.nextLine();
+		if (idmodalidad == 1) {
+			tipomodalidad = "Partime";
+		}else{
+			tipomodalidad = "Fulltime";
+		}
+	
+		System.out.println("Categoria: ");		//Categoria
+		int index3 = 0;
+		for (Categoria categoria : Categoria.values()) {
+			index3++;
+			System.out.println( index3 + "." + categoria);
+		}
+		String tipocategoria = scanner.nextLine();
+
+		System.out.println("Lugar: ");			//Lugar
+		String lugar = scanner.nextLine();
+
+		System.out.println(" Tipo de Trabajo: ");	 //Tipo de Trabajo
+		String tipot  = "";
+		int index = 0;
+		for (TipoTrabajo tipotrabajo : TipoTrabajo.values()) {
+			index++;
+			System.out.println( index + "." + tipotrabajo);
+		}
+		String idtrabajo = scanner.nextLine();
+		if (idtrabajo == "1") {
+			tipot = "Presencial";
+		}else{
+			tipot = "Remoto";
+		}
+
+		System.out.println("Sueldo: ");
+		int sueldo = scanner.nextInt();
+		scanner.nextLine();
+
+		System.out.println("Requisitos: "); //Vacios
+		String requisitos = scanner.nextLine();
+
+		System.out.println("Tareas: "); //Vacios
+		String tareas = scanner.nextLine();
+
+		System.out.println("Titulo: ");
+		System.out.println("1. SI ");
+		System.out.println("2. NO ");
+		String titulo = scanner.nextLine();
+		boolean typeboolean = true;
+		if (titulo == "1") {
+			typeboolean = true;
+		}else{
+			typeboolean = false;
+		}
+		//System.out.println("Vigencia: ");
+		//Date vigencia = scanner.nextInt();
+		System.out.println("Activa: ");
+		System.out.println("1. SI ");
+		System.out.println("2. NO ");
+		String activa = scanner.nextLine();
+		boolean typeboolean2 = true;
+		if (activa == "1") {
+			typeboolean2 = true;
+		}else{
+			typeboolean2 = false;
+		}
 	}
 	private static void administrarPublicaciones() {
 		Scanner scanner = ManagerLogIn.scanner;
@@ -127,13 +209,13 @@ public class MenuEmpleador extends Menu{
 					System.out.println("1. Cambiar estado");
 					System.out.println("2. Cambiar fecha de vigencia");
 					System.out.println("3. Dar de baja");
+					/*System.out.println("3. Dar de baja");
 					System.out.println("3. Dar de baja");
 					System.out.println("3. Dar de baja");
 					System.out.println("3. Dar de baja");
 					System.out.println("3. Dar de baja");
 					System.out.println("3. Dar de baja");
-					System.out.println("3. Dar de baja");
-					System.out.println("3. Dar de baja");
+					System.out.println("3. Dar de baja");*/
 					System.out.println("0. Volver");
 					System.out.println("Ingrese el numero de la opcion : ");
 					respuesta = ManagerLogIn.scanner.nextInt(); 

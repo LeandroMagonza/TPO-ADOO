@@ -38,7 +38,6 @@ public class ManagerLogIn {
         while (true) {
             System.out.println("Ingrese su usuario:");
             String usuario = scanner.nextLine();
-            System.out.printf("Usuario :" + usuario +"\n");
             if ("0".equals(usuario)){
                 scanner.close();
                 break;
@@ -88,7 +87,7 @@ public class ManagerLogIn {
   
     public Boolean leerEmpleadores() {
         try {
-            FileReader entrada = new FileReader("src/almacenamientos/empleadores.txt");
+            FileReader entrada = new FileReader("almacenamientos/empleadores.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Empleador empleador;
@@ -116,7 +115,7 @@ public class ManagerLogIn {
     }
 
     public Boolean leerAdministradores() throws Exception {
-            FileReader entrada = new FileReader("src/almacenamientos/administradores.txt");
+            FileReader entrada = new FileReader("almacenamientos/administradores.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Administrador administrador;
@@ -154,7 +153,7 @@ public class ManagerLogIn {
     // Leer Postulante
    
     public Boolean leerPostulantes()throws Exception {
-            FileReader entrada = new FileReader("src/almacenamientos/postulantes.txt");
+            FileReader entrada = new FileReader("almacenamientos/postulantes.txt");
             BufferedReader miBuffer = new BufferedReader(entrada);
             String linea = "";
             Postulante postulante;
