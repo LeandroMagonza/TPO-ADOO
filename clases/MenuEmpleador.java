@@ -50,7 +50,27 @@ public class MenuEmpleador extends Menu{
 	private static void crearPublicacion() {
 		Scanner scanner = ManagerLogIn.scanner;
 		String respuesta = "";
+		Empleador empleadorLogueado = (Empleador) ManagerLogIn.getManagerLogIn().usuarioLogueado;
+		int cuitEmpresa = empleadorLogueado.empresa;
 		System.out.println("Usted ha seleccionado Crear Publicacion");
+		System.out.println("Ingrese la Descripcion: ");
+		String descripcion = scanner.nextLine();
+		System.out.println("Seleccione la Modalidad: ");
+		String modalidadStr;
+		int index = 0;
+		for (Modalidad modalidad :Modalidad.values()) {
+			index ++;
+			System.out.println(index+" "+modalidad.toString());
+		}
+		String categoriaStr;
+		String lugar;
+		String tipoTrabajoStr;
+		int sueldo;
+		String requisitosStr;
+		String tareasARealizarStr;
+		boolean requiereTitulo;
+		String vigenciaStr;
+		boolean publicacionActiva;
 		
 	}
 	private static void administrarPublicaciones() {
@@ -118,9 +138,11 @@ public class MenuEmpleador extends Menu{
 				case 1:
 					// cambiarEstado();
 					respuesta = -1;
+					break;
 				case 2:
 					// cambiarFechaVigencia();
 					respuesta = -1;
+					break;
 				case 0:
 					break modificarPublicacion;
 				default:

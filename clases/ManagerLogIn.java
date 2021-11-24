@@ -1,4 +1,5 @@
 package clases;
+
 import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,10 +8,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat; 
+import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 public class ManagerLogIn {
+
     // atributo
     public Usuario usuarioLogueado;
     private static ArrayList<Postulante> listaPostulantes;
@@ -18,6 +20,7 @@ public class ManagerLogIn {
     private ArrayList<Administrador> listaAdministradores;
     private static ManagerLogIn instanciaLogIn;
     public static Scanner scanner = new Scanner(System.in);
+
     // constructor
     private ManagerLogIn() {
         listaPostulantes = new ArrayList<Postulante>();
@@ -32,27 +35,27 @@ public class ManagerLogIn {
         }
 
     }
+
     public static void main(String[] args) {
-        
+
         // Checkear Log In
         while (true) {
             System.out.println("Ingrese su usuario:");
             String usuario = scanner.nextLine();
-            System.out.printf("Usuario :" + usuario +"\n");
-            if ("0".equals(usuario)){
+            System.out.printf("Usuario :" + usuario + "\n");
+            if ("0".equals(usuario)) {
                 scanner.close();
                 break;
             }
             System.out.println("Ingrese su contrasena:");
             String contrasena = scanner.nextLine();
-            System.out.printf("Contrasena :" + contrasena +"\n");
+            System.out.printf("Contrasena :" + contrasena + "\n");
             Usuario usuarioALoguear = getManagerLogIn().checkearLogIn(usuario, contrasena);
             if (usuarioALoguear != null) {
                 getManagerLogIn().usuarioLogueado = usuarioALoguear;
                 getManagerLogIn().usuarioLogueado.abrirMenu();
                 getManagerLogIn().usuarioLogueado = null;
-            }
-            else{
+            } else {
                 System.out.println("Nombre de usuario o contrasena incorrectas");
             }
         }
@@ -69,23 +72,22 @@ public class ManagerLogIn {
 
         for (Empleador empleador : listaEmpleadores) {
             if (empleador.mail.equals(mail) && empleador.contrasena.equals(password)) {
-            	return empleador;
+                return empleador;
             }
         }
         for (Postulante postulante : listaPostulantes) {
             if (postulante.mail.equals(mail) && postulante.contrasena.equals(password)) {
-            	return postulante;
+                return postulante;
             }
         }
         for (Administrador administrador : listaAdministradores) {
             if (administrador.mail.equals(mail) && administrador.contrasena.equals(password)) {
-            	return administrador;
+                return administrador;
             }
         }
         return null;
     }
 
-  
     public Boolean leerEmpleadores() {
         try {
             FileReader entrada = new FileReader("src/almacenamientos/empleadores.txt");
@@ -97,14 +99,9 @@ public class ManagerLogIn {
                 linea = miBuffer.readLine();
                 if (linea != null) {
                     String[] arrayLinea = linea.split(";");
-                    empleador = new Empleador(
-                        Integer.parseInt(arrayLinea[0]), 
-                        arrayLinea[1], 
-                        arrayLinea[2],
-                        arrayLinea[3], 
-                        arrayLinea[4], 
-                        arrayLinea[5], 
-                        ManagerEmpresa.getManagerEmpresa().getEmpresaPorCuit(Integer.parseInt(arrayLinea[6])));
+                    empleador = new Empleador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
+                            arrayLinea[3], arrayLinea[4], arrayLinea[5],
+                            ManagerEmpresa.getManagerEmpresa().getEmpresaPorCuit(Integer.parseInt(arrayLinea[6])));
                     listaEmpleadores.add(empleador);
                 }
             }
@@ -115,81 +112,155 @@ public class ManagerLogIn {
         }
     }
 
-    public Boolean leerAdministradores() throws Exception {
-            FileReader entrada = new FileReader("src/almacenamientos/administradores.txt");
-            BufferedReader miBuffer = new BufferedReader(entrada);
-            String linea = "";
-            Administrador administrador;
-            miBuffer.readLine();
-            while (linea != null) {
-                linea = miBuffer.readLine();
-                if (linea != null) {
-                    String[] arrayLinea = linea.split(";");
-                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
-                    Date fechainicio = formatter1.parse(arrayLinea[6]);
-                    Boolean bull  = true;
-                    String myString = arrayLinea[5];
-                    if ("true".equals(myString)){
-                        bull = true;
-                    }
-                    else{
-                        bull = false;
-                    }
-                    administrador = new Administrador(
-                        Integer.parseInt(arrayLinea[0]), 
-                        arrayLinea[1], 
-                        arrayLinea[2],
-                        arrayLinea[3], 
-                        arrayLinea[4],
-                        bull, 
-                        fechainicio);
-                    listaAdministradores.add(administrador);
+    public Boolean leerPostulantes() throws Exception {
+        FileReader entrada = new FileReader("src/almacenamientos/postulantes.txt");
+        BufferedReader miBuffer = new BufferedReader(entrada);
+        String linea = "";
+        Postulante postulante;
+        miBuffer.readLine();
+        while (linea != null) {
+            linea = miBuffer.readLine();
+            if (linea != null) {
+                String[] arrayLinea = linea.split(";");
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+                Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
+                ArrayList<Categoria> intereses = new ArrayList<Categoria>();
+                String[] interesesAProcesar = arrayLinea[6].split("/");
+                for (String interesString : interesesAProcesar) {
+                    intereses.add(Categoria.transform(interesString));
                 }
+                postulante = new Postulante(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
+                        arrayLinea[3], arrayLinea[4], fechaNacimiento, intereses);
+                listaPostulantes.add(postulante);
             }
-            entrada.close();
-            return true;
+        }
+        entrada.close();
+        return true;
     }
 
-    
-    // Leer Postulante
-   
-    public Boolean leerPostulantes()throws Exception {
-            FileReader entrada = new FileReader("src/almacenamientos/postulantes.txt");
-            BufferedReader miBuffer = new BufferedReader(entrada);
-            String linea = "";
-            Postulante postulante;
-            miBuffer.readLine();
-            while (linea != null) {
-                linea = miBuffer.readLine();
-                if (linea != null) {
-                    String[] arrayLinea = linea.split(";");
-                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy"); 
-                    Date fechaNacimiento = formatter1.parse(arrayLinea[5]);
-                    ArrayList<Categoria> intereses = new ArrayList<Categoria>();
-                    String[] interesesAProcesar = arrayLinea[6].split("/");
-                    for (String interesString : interesesAProcesar) {
-                        intereses.add(Categoria.transform(interesString));
-                    }
-                    postulante = new Postulante(
-                            Integer.parseInt(arrayLinea[0]), 
-                            arrayLinea[1], 
-                            arrayLinea[2],
-                            arrayLinea[3], 
-                            arrayLinea[4], 
-                            fechaNacimiento,
-                            intereses);
-                    listaPostulantes.add(postulante);
-                }
+    public Boolean grabarEmpleador() {
+        try {
+            FileWriter escritura = new FileWriter("src/empeladores.txt");
+            for (Empleador a : listaEmpleadores) {
+                String texto = Integer.toString(a.dni) + ";" + a.nombre + ";" + a.apellido + ";" + a.mail + ";"
+                        + a.contrasena + ";" + a.sector + ";" + a.empresa;
+                escritura.write(texto + "\n");
             }
-            entrada.close();
+
+            escritura.close();
             return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
+
+    // ver como pasar fechaNacimiento a string
+    public Boolean grabarPostulante() {
+
+        try {
+            FileWriter escritura = new FileWriter("src/postulante.txt");
+            for (Postulante p : listaPostulantes) {
+
+                String texto = Integer.toString(p.dni) + ";" + p.nombre + ";" + p.apellido + ";" + unir(p.idiomas) + ";"
+                        + unir3(p.intereses) + ";" + unir2(p.nacionalidades) + ";" + unir4(p.publicacionesFavoritas);
+                escritura.write(texto + "\n");
+            }
+
+            escritura.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+
+    }
+
+    public static String unir(ArrayList<Idioma> idiomas) {
+        String idiomaStr = "";
+        for (Idioma i : idiomas) {
+            idiomaStr = idiomaStr + ":" + i;
+        }
+        return idiomaStr;
+
+    }
+
+    public static String unir2(ArrayList<Nacionalidad> nacionalidades) {
+        String nacionalidadStr = "";
+        for (Nacionalidad i : nacionalidades) {
+            nacionalidadStr = nacionalidadStr + ":" + i;
+        }
+        return nacionalidadStr;
+
+    }
+
+    public static String unir3(ArrayList<Categoria> intereses) {
+        String interesesStr = "";
+        for (Categoria i : intereses) {
+            interesesStr = interesesStr + ":" + i;
+        }
+        return interesesStr;
+
+    }
+
+    public static String unir4(ArrayList<Publicacion> publicacionesFavoritas) {
+        String pubfavStr = "";
+        for (Publicacion i : publicacionesFavoritas) {
+            pubfavStr = pubfavStr + ":" + i;
+        }
+        return pubfavStr;
+
+    }
+
+    // ver como pasar fechainicio a string
+    public Boolean grabarAdministrador() {
+        try {
+            FileWriter escritura = new FileWriter("src/administrador.txt");
+            for (Administrador a : listaAdministradores) {
+                String texto = a.dni + ";" + a.nombre + ";" + a.apellido + ";" + a.mail + ";" + a.contrasena + ";"
+                        + a.estado + ";" + a.fechaInicio;
+                escritura.write(texto + "\n");
+            }
+
+            escritura.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public Boolean leerAdministradores() throws Exception {
+        FileReader entrada = new FileReader("src/almacenamientos/administradores.txt");
+        BufferedReader miBuffer = new BufferedReader(entrada);
+        String linea = "";
+        Administrador administrador;
+        miBuffer.readLine();
+        while (linea != null) {
+            linea = miBuffer.readLine();
+            if (linea != null) {
+                String[] arrayLinea = linea.split(";");
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+                Date fechainicio = formatter1.parse(arrayLinea[6]);
+                Boolean bull = true;
+                String myString = arrayLinea[5];
+                if ("true".equals(myString)) {
+                    bull = true;
+                } else {
+                    bull = false;
+                }
+                administrador = new Administrador(Integer.parseInt(arrayLinea[0]), arrayLinea[1], arrayLinea[2],
+                        arrayLinea[3], arrayLinea[4], bull, fechainicio);
+                listaAdministradores.add(administrador);
+            }
+        }
+        entrada.close();
+        return true;
+    }
+
     public static Postulante devolverPostulante(int i) {
-    	for(Postulante postulante : listaPostulantes) {
-    		if(postulante.dni == i)
-    			return postulante;
-    	}
-    	return null;
+        for (Postulante postulante : listaPostulantes) {
+            if (postulante.dni == i)
+                return postulante;
+        }
+        return null;
     }
 
 }
