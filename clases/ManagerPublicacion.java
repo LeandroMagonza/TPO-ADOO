@@ -187,7 +187,6 @@ public class ManagerPublicacion {
 			String requisitosStr, 
 			String tareasARealizarStr,
     		boolean requiereTitulo, 
-			String postulacionesStr,
 			int cantDiasDeVigencia)  {
 				Publicacion publicacionNueva = new Publicacion(
 					listaPublicaciones.size()+1, 
@@ -217,4 +216,16 @@ public class ManagerPublicacion {
 			p.abrir();
 		}
 	}
+	/*
+	public void agregarPostulacion(Postulacion postulacion,Publicacion publicacion) {
+		for(Publicacion p: listaPublicaciones) {
+			if(p.getNroPublicacion()==publicacion.getNroPublicacion()) {
+				ArrayList<Postulacion> lista = p.getPostulaciones();
+				lista.add(postulacion);
+				p.setPostulaciones(lista);
+			}
+		}
+	}
+	*/
+	
 }

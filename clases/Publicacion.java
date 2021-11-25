@@ -18,7 +18,8 @@ public class Publicacion {
     private ArrayList<Requisito> requisitos = new ArrayList<Requisito>();
     private ArrayList<Tarea> tareasARealizar = new ArrayList<Tarea>();
     private Boolean requiereTitulo;
-    private Date vigencia;private ArrayList<Postulacion> postulaciones = new ArrayList<Postulacion>();
+    private Date vigencia;
+    private ArrayList<Postulacion> postulaciones = new ArrayList<Postulacion>();
     public Publicacion(
     		int nroPublicacion, 
 			Empresa empresa, 
@@ -95,6 +96,10 @@ public class Publicacion {
 	public ArrayList<Postulacion> getPostulaciones() {
 		return postulaciones;
 	}
+	public void setPostulaciones(ArrayList<Postulacion> postulaciones) {
+		this.postulaciones = postulaciones;
+	}
+
 	public void abrir(){
 		estado.abrir(this);
     }
