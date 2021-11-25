@@ -27,8 +27,7 @@ public class ManagerPublicacion {
 			350000, 
 			"", 
 			"", 
-			true, 
-			"", 
+			true,  
 			2);
 		crearPublicacion(
 			ManagerEmpresa.getManagerEmpresa().getEmpresaPorCuit(20086665), 
@@ -41,7 +40,6 @@ public class ManagerPublicacion {
 			"", 
 			"", 
 			true, 
-			"", 
 			3);
 			// for (Publicacion publicacion : listaPublicaciones) {
 			// 	System.out.println(publicacion.getDescripcion());
