@@ -181,6 +181,7 @@ public class MenuEmpleador extends Menu {
 			Publicacion publicacion = buscarNroPublicacion();
 			if (publicacion != null) {
 				System.out.println("1. Editar");
+				System.out.println("2. Ver Postulaciones");
 				System.out.println("0. Volver al menu anterior");
 				System.out.println("Ingrese el numero de la opcion : ");
 				respuesta = scanner.nextInt();
@@ -190,11 +191,21 @@ public class MenuEmpleador extends Menu {
 					break buscarPublicacionParaEditar;
 				case 1:
 					modificarPublicacion(publicacion);
+				case 2:
+					verPostulaciones(publicacion);
 				}
 			}
 
 			break;
 		}
+	}
+
+	private static void verPostulaciones(Publicacion publicacion) {
+		for (Postulacion postulacion : publicacion.getPostulaciones()) {
+			System.out.printf(postulacion.getFecha().toString());
+			System.out.println("	-	"+postulacion.postulante.nombre+" "+postulacion.postulante.apellido);
+		}
+
 	}
 
 	// muestra la opcion una vez que seleccionamos una publicacion
