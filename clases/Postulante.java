@@ -22,9 +22,18 @@ public class Postulante extends Usuario {
         MenuPostulante.mostrarMenu();
         
     }
+    public ArrayList<Publicacion> getPublicacionesFavoritas(){
+        return publicacionesFavoritas;
+        
+    }
 
     public void agregarPublicacionAFavoritas(Publicacion publicacion){
-        publicacionesFavoritas.add(publicacion);
+        if (!publicacionesFavoritas.contains(publicacion)){
+            publicacionesFavoritas.add(publicacion);
+        }
+    }
+    public void removerPublicacionDeFavoritas(Publicacion publicacion){
+            publicacionesFavoritas.remove(publicacion);
     }
 
 }

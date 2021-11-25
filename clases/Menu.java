@@ -37,11 +37,7 @@ public class Menu {
 	//se muestra la lista d elas publicaciones de la empresa
 	protected static void listaPublicacionesActivas() {
 		ArrayList<Publicacion> lista = ManagerPublicacion.getManagerPublicacion().listadoActivas();
-		for(Publicacion publicacion: lista) {
-			System.out.printf("Nro: "+publicacion.getNroPublicacion());
-			System.out.printf("    Descripcion: "+publicacion.getDescripcion());
-			System.out.println("	Dias Restantes: "+publicacion.getDiasRestantes());
-		}
+		mostrarListaPublicaciones(lista);
 		// System.out.println("Escriba el nro de la publicacion deseada: ");
 		// int nroPublicacion = ManagerLogIn.scanner.nextInt();
 		// ManagerLogIn.scanner.nextLine();
@@ -51,7 +47,10 @@ public class Menu {
 
 	protected static void listaPublicacionesDeEmpresa(Empresa empresa) {
 		ArrayList<Publicacion> lista = ManagerPublicacion.getManagerPublicacion().listadoPorEmpresa(empresa);
-		for(Publicacion publicacion: lista) {
+		mostrarListaPublicaciones(lista);
+	}
+	protected static void mostrarListaPublicaciones(ArrayList<Publicacion> listaPublicaciones) {
+		for(Publicacion publicacion: listaPublicaciones) {
 			System.out.printf("Nro: "+publicacion.getNroPublicacion());
 			System.out.printf("    Descripcion: "+publicacion.getDescripcion());
 			System.out.println("	Dias Restantes: "+publicacion.getDiasRestantes());

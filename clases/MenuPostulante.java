@@ -30,12 +30,15 @@ public class MenuPostulante extends Menu {
 			case 1:
 				elegirPublicaciones();
 				respuesta = -1;
+				break;
 			case 2:
 				verPublicacionesFavoritas();
 				respuesta = -1;
+				break;
 			case 3:
 				verRecomendaciones();
 				respuesta = -1;
+				break;
 			case 0:
 				respuesta = -1;
 				break menuPostulante;
@@ -43,10 +46,11 @@ public class MenuPostulante extends Menu {
 				System.out.println("Menu - Postulante");
 				System.out.println("1. Ver Publicaciones Abiertas ");
 				System.out.println("2. Ver Publicaciones Favoritas ");
-				// System.out.println("3. Ver recomedaciones ");
+				System.out.println("0. Desloguarse");
 				System.out.print("Ingrese el numero de la opcion : ");
 				respuesta = scanner.nextInt();
 				scanner.nextLine();
+				break;
 			}
 		}
 	}
@@ -63,7 +67,7 @@ public class MenuPostulante extends Menu {
 			if (respuesta == 0) {
 				respuesta = -1;
 				break elegirPublicaciones;
-			} else if (respuesta > 0 && respuesta < managerPublicacion.listadoActivas().size()) {
+			} else if (respuesta > 0 && respuesta <= managerPublicacion.listadoActivas().size()) {
 				verOpcionesDePublicacion(managerPublicacion.listadoActivas().get(respuesta - 1));
 				respuesta = -1;
 			} else {
@@ -111,35 +115,26 @@ public class MenuPostulante extends Menu {
 	private static void verPublicacionesFavoritas() {
 		ManagerPublicacion managerPublicacion = ManagerPublicacion.getManagerPublicacion();
 		Scanner scanner = ManagerLogIn.scanner;
-		int respuesta = 0;
-		System.out.println("Usted ha seleccionado ver publicaciones favoritas");
+		ManagerLogIn managerLogIn = ManagerLogIn.getManagerLogIn();
+		Postulante postulante = (Postulante) managerLogIn.usuarioLogueado;
+
 		System.out.println("Listado de Publicaciones Favoritas : ");
-		// !!ACA insertar codigo que lea archivo publicacionesfavoritas.txt
-		for (Publicacion publicacionActiva : managerPublicacion.listadoActivas()) {
-			System.out.println("");
-		}
+		
+		int respuesta = -1;
+		elegirPublicaciones: while (true) {
+			mostrarListaPublicaciones(postulante.getPublicacionesFavoritas());
+			if (respuesta == 0) {
+				respuesta = -1;
+				break elegirPublicaciones;
+			} else if (respuesta > 0 && respuesta <= postulante.getPublicacionesFavoritas().size()) {
+				mostrarPublicacion(postulante.getPublicacionesFavoritas().get(respuesta - 1));
+				respuesta = -1;
+			} else {
+				System.out.println("Ingrese N° de Publicacion o 0 para volver ");
+				respuesta = scanner.nextInt();
+			}
 
-		Scanner scanner2 = ManagerLogIn.scanner;
-		int respuesta2 = 0;
-		System.out.println("Elija una publicacion : ");
-
-		while ((respuesta != 1) && (respuesta != 2) && (respuesta != 0)) {
-			System.out.println("1. Postularse");
-			System.out.println("2. Eliminar de favoritos");
-			System.out.println("0. Volver al menu anterior");
-			System.out.println("Ingrese el numero de la opcion : ");
-			respuesta = scanner.nextInt();
-			scanner.nextLine();
 		}
-		switch (respuesta) {
-		case 1:
-			postularse();
-		case 2:
-			// eliminarFavoritos();
-		case 0:
-			mostrarMenu();
-		}
-
 	}
 
 	private static void verRecomendaciones() {
