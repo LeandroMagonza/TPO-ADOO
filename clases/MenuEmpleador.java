@@ -53,7 +53,7 @@ public class MenuEmpleador extends Menu {
 		Empresa empresa = empleadorLogueado.empresa;
 		System.out.println("Ingrese la Descripcion: ");
 		String descripcion = scanner.nextLine();
-		
+
 		System.out.println("Modalidades: ");
 		int index = 0;
 		int indiceSeleccionado = -1;
@@ -61,13 +61,13 @@ public class MenuEmpleador extends Menu {
 			index++;
 			System.out.println(index + " " + modalidad.toString());
 		}
-		while (indiceSeleccionado <1 || indiceSeleccionado > Modalidad.values().length ) {
+		while (indiceSeleccionado < 1 || indiceSeleccionado > Modalidad.values().length) {
 			System.out.println("Seleccione una Modalidad: ");
 			indiceSeleccionado = scanner.nextInt();
 			scanner.nextLine();
 		}
-		Modalidad modalidad = Modalidad.values()[indiceSeleccionado-1];
-		
+		Modalidad modalidad = Modalidad.values()[indiceSeleccionado - 1];
+
 		System.out.println("Categorias: ");
 		index = 0;
 		indiceSeleccionado = -1;
@@ -75,13 +75,13 @@ public class MenuEmpleador extends Menu {
 			index++;
 			System.out.println(index + " " + categoria.toString());
 		}
-		while (indiceSeleccionado <1 || indiceSeleccionado > Categoria.values().length ) {
+		while (indiceSeleccionado < 1 || indiceSeleccionado > Categoria.values().length) {
 			System.out.println("Seleccione una Categoria: ");
 			indiceSeleccionado = scanner.nextInt();
 			scanner.nextLine();
 		}
-		Categoria categoria = Categoria.values()[indiceSeleccionado-1];
-		
+		Categoria categoria = Categoria.values()[indiceSeleccionado - 1];
+
 		System.out.println("Ingrese el Lugar: ");
 		String lugar = scanner.nextLine();
 
@@ -92,18 +92,17 @@ public class MenuEmpleador extends Menu {
 			index++;
 			System.out.println(index + " " + tipoTrabajo.toString());
 		}
-		while (indiceSeleccionado <1 || indiceSeleccionado > TipoTrabajo.values().length ) {
+		while (indiceSeleccionado < 1 || indiceSeleccionado > TipoTrabajo.values().length) {
 			System.out.println("Seleccione un Tipo de Trabajo: ");
 			indiceSeleccionado = scanner.nextInt();
 			scanner.nextLine();
 		}
-		TipoTrabajo tipoTrabajo = TipoTrabajo.values()[indiceSeleccionado-1];
-		
-		
+		TipoTrabajo tipoTrabajo = TipoTrabajo.values()[indiceSeleccionado - 1];
+
 		System.out.println("Ingrese Sueldo: ");
 		int sueldo = scanner.nextInt();
 		scanner.nextLine();
-		
+
 		String requisitosStr = "";
 		String tareasARealizarStr = "";
 
@@ -111,7 +110,7 @@ public class MenuEmpleador extends Menu {
 		System.out.println("Requiere Titulo? ");
 		System.out.println("1. SI ");
 		System.out.println("2. NO ");
-		while (indiceSeleccionado <1 || indiceSeleccionado > 2) {
+		while (indiceSeleccionado < 1 || indiceSeleccionado > 2) {
 			System.out.println("Seleccione una opción: ");
 			indiceSeleccionado = scanner.nextInt();
 			scanner.nextLine();
@@ -123,18 +122,8 @@ public class MenuEmpleador extends Menu {
 		System.out.println("Ingrese Cantidad de dias de vigencia: ");
 		int cantDiasDeVigencia = scanner.nextInt();
 		scanner.nextLine();
-		ManagerPublicacion.getManagerPublicacion().crearPublicacion(
-			empresa, 
-			descripcion, 
-			modalidad, 
-			categoria, 
-			lugar, 
-			tipoTrabajo, 
-			sueldo, 
-			requisitosStr, 
-			tareasARealizarStr, 
-			requiereTitulo, 
-			cantDiasDeVigencia);
+		ManagerPublicacion.getManagerPublicacion().crearPublicacion(empresa, descripcion, modalidad, categoria, lugar,
+				tipoTrabajo, sueldo, requisitosStr, tareasARealizarStr, requiereTitulo, cantDiasDeVigencia);
 	}
 
 	private static void administrarPublicaciones() {
@@ -191,8 +180,10 @@ public class MenuEmpleador extends Menu {
 					break buscarPublicacionParaEditar;
 				case 1:
 					modificarPublicacion(publicacion);
+					break;
 				case 2:
 					verPostulaciones(publicacion);
+					break;
 				}
 			}
 
@@ -201,9 +192,14 @@ public class MenuEmpleador extends Menu {
 	}
 
 	private static void verPostulaciones(Publicacion publicacion) {
-		for (Postulacion postulacion : publicacion.getPostulaciones()) {
-			System.out.printf(postulacion.getFecha().toString());
-			System.out.println("	-	"+postulacion.postulante.nombre+" "+postulacion.postulante.apellido);
+
+		if (publicacion.getPostulaciones().size() == 0) {
+			System.out.println("No hay postulaciones aun.");
+		} else {
+			for (Postulacion postulacion : publicacion.getPostulaciones()) {
+				System.out.printf(postulacion.getFecha().toString());
+				System.out.println("	-	" + postulacion.postulante.nombre + " " + postulacion.postulante.apellido);
+			}
 		}
 
 	}
@@ -215,10 +211,6 @@ public class MenuEmpleador extends Menu {
 			switch (respuesta) {
 			case 1:
 				cambiarEstado(p);
-				respuesta = -1;
-				break;
-			case 2:
-				// cambiarFechaVigencia();
 				respuesta = -1;
 				break;
 			case 0:
@@ -235,6 +227,7 @@ public class MenuEmpleador extends Menu {
 
 		}
 	}
+
 	private static void cambiarEstado(Publicacion p) {
 		ManagerPublicacion.getManagerPublicacion().cambiarEstado(p);
 	}

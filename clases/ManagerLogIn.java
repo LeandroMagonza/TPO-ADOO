@@ -40,6 +40,8 @@ public class ManagerLogIn {
 
         // Checkear Log In
         while (true) {
+            System.out.println("lmagonza - Empleador - pass: asd123");
+            System.out.println("fsanchez - Postulante - pass: asd123");
             System.out.println("Ingrese su usuario:");
             String usuario = scanner.nextLine();
             if ("0".equals(usuario)){
