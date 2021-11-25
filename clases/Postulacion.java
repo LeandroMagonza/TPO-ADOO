@@ -5,38 +5,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Postulacion {
-    int nroPostulacion;
     Postulante postulante;
-    Publicacion publicacion;
-    int sueldoPretendido;
     Boolean cumpleRequisitos;
     Date fecha;
     
-    public Postulacion(int nroPostulacion, int dniPostulante, int nroPublicacion, int sueldo,
-    		boolean cumpleRequisitos, String Fecha ) throws ParseException {
-    	SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
-    	this.nroPostulacion = nroPostulacion;
-    	this.postulante = ManagerLogIn.devolverPostulante(dniPostulante);
-    	this.publicacion = ManagerPublicacion.buscar(nroPublicacion);
-    	this.sueldoPretendido = sueldo;
+    public Postulacion(Postulante postulante, boolean cumpleRequisitos ) {
+    	//SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy"); 
+    	this.postulante = postulante;
     	this.cumpleRequisitos = cumpleRequisitos;
-    	this.fecha = formatter1.parse(Fecha);
+    	//this.fecha = formatter1.parse(Fecha);
+    	this.fecha = new Date();
+    	
     }
-
-	public int getNroPostulacion() {
-		return nroPostulacion;
-	}
 
 	public Postulante getPostulante() {
 		return postulante;
-	}
-
-	public Publicacion getPublicacion() {
-		return publicacion;
-	}
-
-	public int getSueldoPretendido() {
-		return sueldoPretendido;
 	}
 
 	public Boolean getCumpleRequisitos() {

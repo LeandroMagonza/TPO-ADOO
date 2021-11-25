@@ -134,7 +134,6 @@ public class MenuEmpleador extends Menu {
 			requisitosStr, 
 			tareasARealizarStr, 
 			requiereTitulo, 
-			"", 
 			cantDiasDeVigencia);
 	}
 

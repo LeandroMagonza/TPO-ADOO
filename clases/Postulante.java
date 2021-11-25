@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Postulante extends Usuario {
     Date fechaNacimiento;
-    ArrayList<Nacionalidad> nacionalidades;
-    ArrayList<Idioma> idiomas;
-    ArrayList<Categoria> intereses;
-    ArrayList<Publicacion> publicacionesFavoritas;
+    ArrayList<Nacionalidad> nacionalidades = new ArrayList<Nacionalidad>();
+    ArrayList<Idioma> idiomas = new ArrayList<Idioma>();
+    ArrayList<Categoria> intereses = new ArrayList<Categoria>();
+    ArrayList<Publicacion> publicacionesFavoritas = new ArrayList<Publicacion>();
 
     public Postulante(int dni,String nombre,String apellido,String mail, String contrasena,Date fechaNacimiento,ArrayList<Categoria> intereses){
         super(dni,nombre,apellido,mail,contrasena);
@@ -21,6 +21,10 @@ public class Postulante extends Usuario {
         System.out.println("logueado como: Postulante");
         MenuPostulante.mostrarMenu();
         
+    }
+
+    public void agregarPublicacionAFavoritas(Publicacion publicacion){
+        publicacionesFavoritas.add(publicacion);
     }
 
 }

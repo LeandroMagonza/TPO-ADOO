@@ -41,9 +41,9 @@ public class MenuPostulante extends Menu {
 				break menuPostulante;
 			default:
 				System.out.println("Menu - Postulante");
-				System.out.println("1. Elegir Publicacion ");
-				System.out.println("2. Ver publicaciones Favoritas ");
-				System.out.println("3. Ver recomedaciones ");
+				System.out.println("1. Ver Publicaciones Abiertas ");
+				System.out.println("2. Ver Publicaciones Favoritas ");
+				// System.out.println("3. Ver recomedaciones ");
 				System.out.print("Ingrese el numero de la opcion : ");
 				respuesta = scanner.nextInt();
 				scanner.nextLine();
@@ -55,34 +55,59 @@ public class MenuPostulante extends Menu {
 		ManagerPublicacion managerPublicacion = ManagerPublicacion.getManagerPublicacion();
 		Scanner scanner = ManagerLogIn.scanner;
 		int respuesta = -1;
-		System.out.println("Usted ha seleccionado elegir publicacion");
 		System.out.println("Listado de Publicaciones: ");
 
-		listaPublicaciones(); // Listar Publics
+		listaPublicacionesActivas(); // Listar Publics
 
 		elegirPublicaciones: while (true) {
-			switch (respuesta) {
-			case 1:
-				postularse();
-				respuesta = -1;
-			case 2:
-				agregarFavoritos();
-				respuesta = -1;
-			case 0:
+			if (respuesta == 0) {
 				respuesta = -1;
 				break elegirPublicaciones;
-			default:
-				System.out.println("Que desea hacer? ");
-				System.out.println("1. Postularse ");
-				System.out.println("2. Agregar a Favoritos ");
-				System.out.println("0. Volver ");
-
+			} else if (respuesta > 0 && respuesta < managerPublicacion.listadoActivas().size()) {
+				verOpcionesDePublicacion(managerPublicacion.listadoActivas().get(respuesta - 1));
+				respuesta = -1;
+			} else {
+				System.out.println("Ingrese N° de Publicacion o 0 para volver ");
 				respuesta = scanner.nextInt();
-
 			}
+
 		}
 
 	}
+
+	private static void verOpcionesDePublicacion(Publicacion publicacion) {
+		ManagerPublicacion managerPublicacion = ManagerPublicacion.getManagerPublicacion();
+		Postulante postulante = (Postulante) ManagerLogIn.getManagerLogIn().usuarioLogueado;
+		Scanner scanner = ManagerLogIn.scanner;
+		int respuesta = -1;
+		opcionesDePublicacion: while (true) {
+
+			switch (respuesta) {
+			case 0:
+				respuesta = -1;
+				break opcionesDePublicacion;
+			case 1:
+				managerPublicacion.postularEnPublicacion(publicacion, postulante);
+				System.out.println("Postulacion Agregada!");
+				respuesta = -1;
+				break;
+			case 2:
+				postulante.agregarPublicacionAFavoritas(publicacion);
+				System.out.println("Publicacion Agregada!");
+				respuesta = -1;
+				break;
+			default:
+				System.out.println("Seleccione una opcion : ");
+				System.out.println("1. Postularse ");
+				System.out.println("2. Agregar a Favoritas ");
+				System.out.println("0. Volver ");
+				respuesta = scanner.nextInt();
+				scanner.nextLine();
+				break;
+			}
+		}
+	}
+
 	private static void verPublicacionesFavoritas() {
 		ManagerPublicacion managerPublicacion = ManagerPublicacion.getManagerPublicacion();
 		Scanner scanner = ManagerLogIn.scanner;
@@ -97,7 +122,6 @@ public class MenuPostulante extends Menu {
 		Scanner scanner2 = ManagerLogIn.scanner;
 		int respuesta2 = 0;
 		System.out.println("Elija una publicacion : ");
-
 
 		while ((respuesta != 1) && (respuesta != 2) && (respuesta != 0)) {
 			System.out.println("1. Postularse");
