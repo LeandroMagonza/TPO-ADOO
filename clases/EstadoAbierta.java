@@ -8,6 +8,9 @@ public class EstadoAbierta extends Estado {
     public EstadoAbierta(){
         this.cantDiasDeVigencia = 60;
     }
+    public int getCantDiasDeVigencia(){
+        return cantDiasDeVigencia;
+    }
     public void cerrar(Publicacion publicacion){
         publicacion.cambiarEstado(new EstadoCerrada());
     }

@@ -31,6 +31,11 @@ public class ManagerEmpresa
 		}
 		return instanciaEM;
 	}
+	public ArrayList<Empresa> getListaEmpresas()
+	{
+		return empresas;
+	}
+
 	public Empresa getEmpresaPorCuit(long cuitEmpresa){
 		for (Empresa empresa : empresas) {
 			if (empresa.cuitEmpresa == cuitEmpresa) {
