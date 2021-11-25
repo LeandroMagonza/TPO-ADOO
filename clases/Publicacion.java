@@ -16,49 +16,45 @@ public class Publicacion {
     private TipoTrabajo tipoTrabajo;
     private int sueldo;
     private ArrayList<Requisito> requisitos = new ArrayList<Requisito>();
-    private ArrayList<Tarea> tareasARealizar =new ArrayList<Tarea>();
+    private ArrayList<Tarea> tareasARealizar = new ArrayList<Tarea>();
     private Boolean requiereTitulo;
-    private Date vigencia;
-    private Boolean publicacionActiva;
-    private ArrayList<Postulacion> postulaciones;
+    private Date vigencia;private ArrayList<Postulacion> postulaciones = new ArrayList<Postulacion>();
     public Publicacion(
     		int nroPublicacion, 
 			Empresa empresa, 
 			String descripcion,	
-			String modalidadStr,
-    		String categoriaStr, 
+			Modalidad modalidad,
+    		Categoria categoria, 
 			String lugar, 
-			String tipoTrabajoStr,
+			TipoTrabajo tipoTrabajo,
     		int sueldo, 
 			String requisitosStr, 
 			String tareasARealizarStr,
     		boolean requiereTitulo, 
-			String vigenciaStr, 
-			boolean publicacionActiva, 
-			String postulacionesStr,
-			int cantDiasDeVigencia) throws Exception {
-		SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");  
+			int cantDiasDeVigencia)  {
+		// SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");  
 		this.nroPublicacion = nroPublicacion;
 		this.empresa = empresa;
 		this.descripcion = descripcion;
-		this.modalidad = Modalidad.transform(modalidadStr);
-		this.categoria = Categoria.transform(categoriaStr);
+		this.modalidad = modalidad;
+		this.categoria = categoria;
 		this.lugar = lugar;
-		this.tipoTrabajo = TipoTrabajo.transform(tipoTrabajoStr);
+		this.tipoTrabajo = tipoTrabajo;
 		this.sueldo = sueldo;
 		// this.requisitos = ManagerRequisito.dividir(requisitosStr);
 		// this.tareasARealizar = ManagerTarea.dividir(tareasARealizarStr);
 		this.cambiarEstado(new EstadoAbierta(cantDiasDeVigencia));
 		this.requiereTitulo = requiereTitulo;
-		this.vigencia= formatter1.parse(vigenciaStr);  
-    	this.publicacionActiva = publicacionActiva;
-		this.postulaciones = ManagerPostulacion.dividir(postulacionesStr);
+		// this.postulaciones = ManagerPostulacion.dividir(postulacionesStr);
     	
     	
     }
     
 	public int getNroPublicacion() {
 		return nroPublicacion;
+	}
+	public Estado getEstado() {
+		return estado;
 	}
 	public long getNroEmpresa() {
 		return empresa.cuitEmpresa;
@@ -95,9 +91,6 @@ public class Publicacion {
 	}
 	public Date getVigencia() {
 		return vigencia;
-	}
-	public Boolean getPublicacionActiva() {
-		return publicacionActiva;
 	}
 	public ArrayList<Postulacion> getPostulaciones() {
 		return postulaciones;

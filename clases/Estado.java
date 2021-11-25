@@ -12,5 +12,8 @@ public abstract class Estado {
     }
     public void pasarDia(Publicacion publicacion){
         return;
+    }    
+    public int getCantDiasDeVigencia(){
+        return 0;
     }
 }

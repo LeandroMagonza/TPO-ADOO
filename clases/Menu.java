@@ -80,24 +80,22 @@ public class Menu {
 		System.out.println("Lugar: "+p.getLugar());
 		System.out.println("Tipo: "+p.getTipoTrabajo());
 		System.out.println("Sueldo: $"+p.getSueldo());
-		System.out.println("Requisitos: ");
-		for(Requisito requisito: p.getRequisitos())
-			System.out.println(requisito.descripcion);
-		System.out.println("Tareas");
-		for(Tarea tarea: p.getTareasARealizar())
-			System.out.println(tarea.descripcion);
+		// System.out.println("Requisitos: ");
+		// for(Requisito requisito: p.getRequisitos())
+		// 	System.out.println(requisito.descripcion);
+		// System.out.println("Tareas");
+		// for(Tarea tarea: p.getTareasARealizar())
+		// 	System.out.println(tarea.descripcion);
 		if(p.getRequiereTitulo())
 			System.out.print("Si ");
 		else
 			System.out.print("No ");
 		System.out.println("requiere titulacion");
-		System.out.println("Fecha limite: "+p.getVigencia());//revisar como se muestra
+		System.out.println("Dias Restantes: "+p.getEstado().getCantDiasDeVigencia());//revisar como se muestra
 		System.out.print("La busqueda ");
-		if(p.getPublicacionActiva())
-			System.out.print(" Si ");
-		else
-			System.out.print(" No ");
-		System.out.println("sigue abierta");
+		if(p.getEstado() instanceof EstadoCerrada)
+			System.out.print("No ");
+		System.out.println("esta abierta");
 		
 	}
 
